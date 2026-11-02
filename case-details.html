@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect - Case Progress Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle"></div>
+      <span class="logo-text">PawTect</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
+      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
+      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
+      <a href="donate.html" class="nav-btn"><i class="fa-solid fa-heart"></i> Donate</a>
+      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    </nav>
+    <div class="nav-right">
+      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
+      <div class="profile-circle"></div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <main class="content-area">
+      <div class="page-title-bar">
+        <div class="title-with-icon">
+          <i class="fa-solid fa-timeline header-paw"></i>
+          <h2>Case Progress Tracker (#6969)</h2>
+        </div>
+      </div>
+
+      <div class="case-detail-row">
+        <div class="case-meta-card">
+          <div class="card-thumb"><i class="fa-solid fa-dog"></i></div>
+          <div class="card-meta-content">
+            <div class="card-head-line">
+              <h4>Case #6969</h4>
+              <span class="tag tag-assigned">Assigned</span>
+            </div>
+            <ul class="meta-info-list">
+              <li><i class="fa-solid fa-scroll"></i> Stray Report</li>
+              <li><i class="fa-solid fa-location-dot"></i> Holycross Market, San Bartolome</li>
+              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026</li>
+              <li><i class="fa-solid fa-tag"></i> Injured</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <h3>Progress Timeline</h3>
+          <p class="stage-subtitle">Stage 3 of 5: Rescue Assigned</p>
+
+          <div class="timeline-stepper">
+            <div class="step completed">
+              <div class="step-node"><i class="fa-solid fa-check"></i></div>
+              <span class="step-title">Reported</span>
+            </div>
+            <div class="step completed">
+              <div class="step-node"><i class="fa-solid fa-check"></i></div>
+              <span class="step-title">Accepted</span>
+            </div>
+            <div class="step active">
+              <div class="step-node">3</div>
+              <span class="step-title">Assigned</span>
+            </div>
+            <div class="step">
+              <div class="step-node">4</div>
+              <span class="step-title">Rescued</span>
+            </div>
+            <div class="step">
+              <div class="step-node">5</div>
+              <span class="step-title">Intake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

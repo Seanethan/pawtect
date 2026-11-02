@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect - Case Overview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle"></div>
+      <span class="logo-text">PawTect</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
+      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
+      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
+      <a href="donate.html" class="nav-btn"><i class="fa-solid fa-heart"></i> Donate</a>
+      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    </nav>
+    <div class="nav-right">
+      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
+      <div class="profile-circle"></div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <main class="content-area">
+      <div class="page-title-bar">
+        <div class="title-with-icon">
+          <i class="fa-solid fa-paw header-paw"></i>
+          <h2>Rescue Cases</h2>
+        </div>
+      </div>
+
+      <!-- Overview Header Card -->
+      <div class="overview-main-card">
+        <div class="overview-thumb-box"><i class="fa-regular fa-image"></i></div>
+        <div class="overview-meta-body">
+          <div class="overview-header-line">
+            <h3>Rescue Case #001</h3>
+            <span class="tag tag-reported">Pending</span>
+            <span class="badge badge-rose">Urgent</span>
+            <button class="btn btn-coral" style="margin-left:auto;" onclick="alert('Request canceled.')">Cancel Request</button>
+          </div>
+          <p class="sub-category">For Adoption</p>
+          <div class="location-line"><i class="fa-solid fa-location-dot"></i> Quezon City, San Bartolome</div>
+          <div class="time-line"><i class="fa-solid fa-calendar-days"></i> Reported on Oct. 23, 2026 - 10:30 AM</div>
+        </div>
+      </div>
+
+      <!-- Case Status Update Tracker -->
+      <div class="progress-card" style="margin-bottom: 20px;">
+        <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:16px;"><i class="fa-solid fa-compass"></i> Case Status Update</h3>
+        <div class="timeline-stepper">
+          <div class="step completed">
+            <div class="step-node">1</div>
+            <span class="step-title">Report Pending</span>
+          </div>
+          <div class="step">
+            <div class="step-node">2</div>
+            <span class="step-title">En route</span>
+          </div>
+          <div class="step">
+            <div class="step-node">3</div>
+            <span class="step-title">Arrived at the Location</span>
+          </div>
+          <div class="step">
+            <div class="step-node">4</div>
+            <span class="step-title">Rescue Outcome Submitted</span>
+          </div>
+          <div class="step">
+            <div class="step-node">5</div>
+            <span class="step-title">Report Finish</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Specifications Card -->
+      <div class="overview-details-card">
+        <div class="card-section-title"><i class="fa-solid fa-paw"></i><h3>Case Details</h3></div>
+        <div class="two-column-details">
+          <div class="detail-column">
+            <div class="detail-row"><strong>Animal Type:</strong> <br>Cat</div>
+            <div class="detail-row"><strong>Breed:</strong> <br>--</div>
+            <div class="detail-row"><strong>Size:</strong> <br>--</div>
+            <div class="detail-row"><strong>Color:</strong> <br>--</div>
+            <div class="detail-row"><strong>Condition:</strong> <br>Injured (left front leg, unable to walk)</div>
+          </div>
+          <div class="column-divider"></div>
+          <div class="detail-column">
+            <div class="detail-row"><strong>Location Found:</strong> <br>Quezon City -- Commonwealth</div>
+            <div class="detail-row"><strong>Date Reported:</strong> <br>Oct. 24, 2080 -- 8:30 PM</div>
+            <div class="detail-row"><strong>Reported By:</strong> <br>Rene Bombaclat</div>
+            <div class="detail-row"><strong>Description:</strong> <br>Teach me how to doggie, tteach me how to doggie, Turuan moko nyan ttutuan moko nyan</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
