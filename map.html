@@ -6,9 +6,10 @@
   <title>PawTect - Rescue Map</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body onload="initMap()">
+<body>
 
   <header class="navbar">
     <div class="nav-left">
@@ -48,12 +49,12 @@
             <button class="pill" onclick="setMapFilter('reported', this)">Reported</button>
           </div>
         </div>
-        <div id="googleMap" class="interactive-map"></div>
+        <div id="leafletMap" class="interactive-map"></div>
       </div>
 
       <div class="warning-banner">
         <i class="fa-solid fa-circle-info"></i>
-        <span>The map does not guarantee a facility is open or will accept an animal. Always verify prior to transit.</span>
+        <span>Map data &copy; OpenStreetMap contributors. The map does not guarantee a facility is open or will accept an animal. Always verify prior to transit.</span>
       </div>
     </main>
 
@@ -66,8 +67,8 @@
     </aside>
   </div>
 
-  <!-- Google Maps API with your active API key -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgUK_fjOEvzDUxXXPc5vAzBE1EiR9pHg&callback=initMap"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

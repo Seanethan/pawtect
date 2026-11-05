@@ -228,3 +228,26 @@ body {
 .edit-row-inline input, .edit-field-group input { flex-grow: 1; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--color-dark-brown); background: transparent; outline: none; }
 .hidden { display: none !important; }
 .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+
+/* ===== Leaflet / OpenStreetMap ===== */
+.interactive-map, .report-map { position: relative; z-index: 0; }
+.report-map { height: 240px; width: 100%; border-radius: 8px; background: #DDE5B6; }
+.paw-pin { background: none; border: none; }
+.paw-pin span {
+  width: 32px; height: 32px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.paw-pin i { transform: rotate(45deg); color: #fff; font-size: 13px; }
+.pin-shelter span { background: #6E3419; }
+.pin-clinic span { background: #5B8E4A; }
+.pin-reported span, .pin-report span { background: #E35336; }
+.user-dot {
+  width: 16px; height: 16px; border-radius: 50%; background: #2F80ED; border: 3px solid #fff;
+  box-shadow: 0 0 0 0 rgba(47,128,237,.6); animation: userPulse 2s infinite;
+}
+@keyframes userPulse { 70% { box-shadow: 0 0 0 14px rgba(47,128,237,0); } 100% { box-shadow: 0 0 0 0 rgba(47,128,237,0); } }
+.locate-btn {
+  background: #fff; width: 34px; height: 34px; border: 2px solid rgba(0,0,0,.2); border-radius: 4px;
+  cursor: pointer; font-size: 16px; color: #6E3419;
+}

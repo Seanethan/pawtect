@@ -6,6 +6,7 @@
   <title>PawTect - Submit Report</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -93,13 +94,16 @@
           <div class="form-group" style="margin-top:24px;">
             <label><span class="step-badge">3</span> Location</label>
             <p class="sub-text">Enter the exact or nearby location where the animal was found</p>
-            <div class="mini-map-box" style="height:140px; margin-bottom:12px;"><i class="fa-solid fa-map-location-dot mini-map-icon"></i></div>
+            <div id="reportMap" class="report-map"></div>
+            <p class="sub-text" id="pinStatus" style="margin:8px 0 12px;">Tap the map or drag the pin to set the exact spot.</p>
+            <input type="hidden" id="reportLat" />
+            <input type="hidden" id="reportLng" />
             <div class="location-input-group">
               <div class="input-with-symbol" style="flex-grow:1;">
                 <i class="fa-solid fa-location-dot symbol-left"></i>
-                <input type="text" class="form-control-text symbol-padded" placeholder="e.g. Street name, landmark, or address" required />
+                <input type="text" id="locationInput" class="form-control-text symbol-padded" placeholder="e.g. Street name, landmark, or address" required />
               </div>
-              <button type="button" class="btn btn-peach" onclick="alert('Location acquired!')">Use my location</button>
+              <button type="button" class="btn btn-peach" onclick="useMyLocation()"><i class="fa-solid fa-location-crosshairs"></i> Use my location</button>
             </div>
           </div>
 
@@ -116,6 +120,7 @@
     </aside>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
