@@ -3,93 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect - Case Progress Details</title>
+  <title>PawTect - Case Details</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brown:  { DEFAULT:"#A0522D", dark:"#6E3419", light:"#C68642" },
+            cream:  { DEFAULT:"#F5F5DC", card:"#F8F7EE" },
+            peach:  { DEFAULT:"#F4A460", light:"#FDF0E2" },
+            coral:  { DEFAULT:"#E35336", light:"#FCE8E6" },
+            bdr:    "#E2DAC8",
+          },
+          fontFamily: { sans:["'Plus Jakarta Sans'","sans-serif"], hand:["'Caveat'","cursive"] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family:"Plus Jakarta Sans",sans-serif; }
+    .leaflet-container { z-index:0!important; }
+    @keyframes userPulse {
+      70%  { box-shadow:0 0 0 14px rgba(47,128,237,0); }
+      100% { box-shadow:0 0 0 0   rgba(47,128,237,0); }
+    }
+    .hidden { display:none!important; }
+    /* stepper connector */
+    .step-wrap { position:relative; }
+    .step-wrap::before {
+      content:""; position:absolute; top:18px;
+      left:calc(-50% + 20px); right:calc(50% + 20px);
+      height:2px; background:#E2DAC8; z-index:0;
+    }
+    .step-wrap.done::before { background:#F4A460; }
+    /* scrollable pills */
+    .pill-scroll { -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .pill-scroll::-webkit-scrollbar { display:none; }
+  </style>
 </head>
-<body>
+<body class="bg-cream text-brown-dark min-h-screen">
 
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
+  <!-- NAVBAR -->
+  <header class="bg-brown sticky top-0 z-50 shadow-md">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-16">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-9 h-9 rounded-full bg-cream"></div>
+        <span class="text-white text-xl font-extrabold italic">PawTect</span>
+      </div>
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="index.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white hover:bg-white/20"><i class="fa-solid fa-house"></i><span class="hidden xl:inline">Home</span></a>
+      <a href="map.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white hover:bg-white/20"><i class="fa-solid fa-map-location-dot"></i><span class="hidden xl:inline">Map</span></a>
+      <a href="rescue-cases.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white bg-peach text-white"><i class="fa-solid fa-list-check"></i><span class="hidden xl:inline">Rescue Cases</span></a>
+      <a href="submit-report.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white hover:bg-white/20"><i class="fa-solid fa-bullhorn"></i><span class="hidden xl:inline">Report</span></a>
+      <a href="donate.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white hover:bg-white/20"><i class="fa-solid fa-heart"></i><span class="hidden xl:inline">Donate</span></a>
+      <a href="profile.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white hover:bg-white/20"><i class="fa-solid fa-user"></i><span class="hidden xl:inline">Profile</span></a>
+      
+      </nav>
+      <!-- Right: user + hamburger -->
+      <div class="flex items-center gap-3">
+        <a href="profile.html" class="hidden sm:flex items-center gap-2 border border-white/40 text-white text-sm px-3 py-1.5 rounded-lg font-semibold">
+          <span id="navUserName">Rene Buttercoconut</span><i class="fa-solid fa-chevron-down text-xs"></i>
+        </a>
+        <div class="w-9 h-9 rounded-full bg-cream cursor-pointer" onclick="window.location.href='profile.html'"></div>
+        <!-- Hamburger (mobile only) -->
+        <button class="md:hidden text-white text-xl px-2" onclick="toggleMobileNav()" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="donate.html" class="nav-btn"><i class="fa-solid fa-heart"></i> Donate</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    <!-- Mobile drawer -->
+    <nav id="mobileNav" class="hidden md:hidden bg-brown border-t border-white/20 px-4 pb-4 pt-2 flex flex-col gap-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-house w-5 text-center"></i>Home</a>
+        <a href="map.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-map-location-dot w-5 text-center"></i>Map</a>
+        <a href="rescue-cases.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold bg-peach text-white rounded-lg"><i class="fa-solid fa-list-check w-5 text-center"></i>Rescue Cases</a>
+        <a href="submit-report.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-bullhorn w-5 text-center"></i>Report</a>
+        <a href="donate.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-heart w-5 text-center"></i>Donate</a>
+        <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-white font-semibold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-user w-5 text-center"></i>Profile</a>
+        
     </nav>
-    <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle"></div>
-    </div>
   </header>
-
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="page-title-bar">
-        <div class="title-with-icon">
-          <i class="fa-solid fa-timeline header-paw"></i>
-          <h2>Case Progress Tracker (#6969)</h2>
-        </div>
+  <div class="max-w-screen-xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+    <main class="min-w-0">
+      <div class="flex items-center gap-3 mb-5">
+        <i class="fa-solid fa-timeline text-2xl text-brown"></i>
+        <h2 class="text-xl font-extrabold">Case Progress Tracker (#6969)</h2>
       </div>
-
-      <div class="case-detail-row">
-        <div class="case-meta-card">
-          <div class="card-thumb"><i class="fa-solid fa-dog"></i></div>
-          <div class="card-meta-content">
-            <div class="card-head-line">
-              <h4>Case #6969</h4>
-              <span class="tag tag-assigned">Assigned</span>
-            </div>
-            <ul class="meta-info-list">
-              <li><i class="fa-solid fa-scroll"></i> Stray Report</li>
-              <li><i class="fa-solid fa-location-dot"></i> Holycross Market, San Bartolome</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026</li>
-              <li><i class="fa-solid fa-tag"></i> Injured</li>
-            </ul>
+      <div class="grid grid-cols-1 sm:grid-cols-[260px_1fr] gap-4">
+        <!-- Meta card -->
+        <div class="bg-cream-card border border-bdr rounded-xl p-4">
+          <div class="w-16 h-16 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-3xl text-gray-400 mb-3">
+            <i class="fa-solid fa-dog"></i>
           </div>
+          <div class="flex items-center gap-2 mb-3 flex-wrap">
+            <h4 class="font-extrabold">Case #6969</h4>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Assigned</span>
+          </div>
+          <ul class="space-y-2 text-xs text-gray-500">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-scroll w-4"></i>Stray Report</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot w-4"></i>Holycross Market, San Bartolome</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-calendar-days w-4"></i>Oct. 27, 2026</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-tag w-4"></i>Injured</li>
+          </ul>
         </div>
-
-        <div class="progress-card">
-          <h3>Progress Timeline</h3>
-          <p class="stage-subtitle">Stage 3 of 5: Rescue Assigned</p>
-
-          <div class="timeline-stepper">
-            <div class="step completed">
-              <div class="step-node"><i class="fa-solid fa-check"></i></div>
-              <span class="step-title">Reported</span>
+        <!-- Progress card -->
+        <div class="bg-cream-card border border-bdr rounded-xl p-5">
+          <h3 class="font-extrabold mb-1">Progress Timeline</h3>
+          <p class="text-xs text-brown mb-5">Stage 3 of 5: Rescue Assigned</p>
+          <div class="flex justify-between overflow-x-auto pb-2">
+            <div class="step-wrap done flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-content font-bold text-sm mb-1 flex items-center justify-center bg-peach text-white"><i class="fa-solid fa-check text-xs"></i></div>
+              <span class="text-xs font-bold leading-tight">Reported</span>
             </div>
-            <div class="step completed">
-              <div class="step-node"><i class="fa-solid fa-check"></i></div>
-              <span class="step-title">Accepted</span>
+            <div class="step-wrap done flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-content font-bold text-sm mb-1 flex items-center justify-center bg-peach text-white"><i class="fa-solid fa-check text-xs"></i></div>
+              <span class="text-xs font-bold leading-tight">Accepted</span>
             </div>
-            <div class="step active">
-              <div class="step-node">3</div>
-              <span class="step-title">Assigned</span>
+            <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-content font-bold text-sm mb-1 flex items-center justify-center border-2 border-coral text-coral font-extrabold">3</div>
+              <span class="text-xs font-bold leading-tight">Assigned</span>
             </div>
-            <div class="step">
-              <div class="step-node">4</div>
-              <span class="step-title">Rescued</span>
+            <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-content font-bold text-sm mb-1 flex items-center justify-center bg-white border-2 border-bdr text-brown-dark font-extrabold">4</div>
+              <span class="text-xs font-bold leading-tight">Rescued</span>
             </div>
-            <div class="step">
-              <div class="step-node">5</div>
-              <span class="step-title">Intake</span>
+            <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-content font-bold text-sm mb-1 flex items-center justify-center bg-white border-2 border-bdr text-brown-dark font-extrabold">5</div>
+              <span class="text-xs font-bold leading-tight">Intake</span>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-
-    <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
-    </aside>
+      </div></main>
+    <aside class="flex flex-col gap-4"><div class="bg-cream-card border border-bdr rounded-xl px-4 py-3 flex justify-between items-center font-extrabold text-sm">
+        <span>Notification</span><i class="fa-solid fa-bell text-brown"></i>
+      </div></aside>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>

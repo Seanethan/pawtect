@@ -4,102 +4,143 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PawTect - Home</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brown:  { DEFAULT:"#A0522D", dark:"#6E3419", light:"#C68642" },
+            cream:  { DEFAULT:"#F5F5DC", card:"#F8F7EE" },
+            peach:  { DEFAULT:"#F4A460", light:"#FDF0E2" },
+            coral:  { DEFAULT:"#E35336", light:"#FCE8E6" },
+            bdr:    "#E2DAC8",
+            navactive: "#D68B4F",
+          },
+          fontFamily: { sans:["'Plus Jakarta Sans'","sans-serif"], hand:["'Caveat'","cursive"] },
+        }
+      }
+    }
+  </script>
 </head>
-<body>
-
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
+<body class="bg-cream text-brown-dark min-h-screen">
+  <!-- NAVBAR -->
+  <header class="bg-brown sticky top-0 z-50 shadow-md">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-16">
+      <!-- Left: Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-11.5 h-11.5 rounded-full"><img src="Assets/PawTectLogo.svg" alt="PawTect Logo" class="w-12 h-12 object-contain" /></div>
+        <span class="text-white text-2xl font-bold italic tracking-wide" style="font-family: 'Caveat', cursive;">PawTect</span>
+      </div>
+      <!-- Right: Desktop nav -->
+      <nav class="hidden md:flex items-center gap-2 ">
+        <a href="index.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white bg-navactive transition-colors"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="map.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-map-location-dot"></i><span>Map</span></a>
+        <a href="rescue-cases.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-list-check"></i><span>Rescue Cases</span></a>
+        <a href="submit-report.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-bullhorn"></i><span>Report</span></a>
+        <a href="donate.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-heart"></i><span>Donate</span></a>
+        <a href="profile.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+      </nav>
+      <!-- Mobile Hamburger -->
+      <div class="flex md:hidden items-center">
+        <button class="text-white text-2xl px-2" onclick="toggleMobileNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn active"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="donate.html" class="nav-btn"><i class="fa-solid fa-heart"></i> Donate</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    <!-- Mobile Drawer -->
+    <nav id="mobileNav" class="hidden md:hidden bg-brown border-t border-white/20 px-4 pb-4 pt-2 flex flex-col gap-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold bg-navactive rounded-lg"><i class="fa-solid fa-house w-5 text-center"></i>Home</a>
+        <a href="map.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-map-location-dot w-5 text-center"></i>Map</a>
+        <a href="rescue-cases.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-list-check w-5 text-center"></i>Rescue Cases</a>
+        <a href="submit-report.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-bullhorn w-5 text-center"></i>Report</a>
+        <a href="donate.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-heart w-5 text-center"></i>Donate</a>
+        <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-user w-5 text-center"></i>Profile</a>
     </nav>
-    <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle" onclick="window.location.href='profile.html'" style="cursor:pointer;"></div>
-    </div>
   </header>
 
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="hero-banner">
-        <div class="hero-badge"><i class="fa-solid fa-shield-cat"></i></div>
-        <div class="hero-text">
-          <h2>Hello, welcome to PawTect!</h2>
-          <p>Together, we can make a difference. Report stray animals, help pets in need, and support rescue efforts in our community.</p>
-          <div class="hero-actions">
-            <a href="submit-report.html" class="btn btn-coral"><i class="fa-solid fa-bullhorn"></i> Report a stray <i class="fa-solid fa-chevron-right"></i></a>
-            <a href="rescue-cases.html" class="btn btn-peach"><i class="fa-solid fa-paw"></i> Rescue a stray <i class="fa-solid fa-chevron-right"></i></a>
+  <!-- MAIN CONTENT (Same as your original) -->
+  <div class="max-w-screen-xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+    <main class="min-w-0">
+      <!-- Your Home Page Content goes here -->
+      <!-- (I've kept the layout you provided previously) -->
+      <div class="bg-peach border-2 border-coral rounded-xl p-6 flex items-center gap-6 mb-6 relative overflow-hidden">
+        <div class="w-20 h-20 shrink-0 bg-coral rounded-full flex items-center justify-center text-4xl text-white border-4 border-white shadow">
+          <i class="fa-solid fa-shield-cat"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brown-dark mb-1">Hello, welcome to PawTect!</h2>
+          <p class="text-sm text-brown-dark/80 mb-4 max-w-md">Together, we can make a difference. Report stray animals, help pets in need, and support rescue efforts in our community.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="submit-report.html" class="flex items-center gap-2 bg-coral text-white font-bold px-4 py-2 rounded-lg text-sm shadow hover:opacity-90"><i class="fa-solid fa-bullhorn"></i> Report a stray <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="rescue-cases.html"  class="flex items-center gap-2 bg-peach  text-white font-bold px-4 py-2 rounded-lg text-sm shadow hover:opacity-90 border-2 border-white"><i class="fa-solid fa-paw"></i> Rescue a stray <i class="fa-solid fa-chevron-right text-xs"></i></a>
           </div>
         </div>
       </div>
-
-      <div class="section-header">
-        <h3><i class="fa-solid fa-paw"></i> Your Active Cases</h3>
-        <a href="rescue-cases.html" class="view-all-link">View All Cases <i class="fa-solid fa-arrow-right"></i></a>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-extrabold flex items-center gap-2"><i class="fa-solid fa-paw text-brown"></i> Your Active Cases</h3>
+        <a href="rescue-cases.html" class="text-coral font-bold text-sm flex items-center gap-1">View All Cases <i class="fa-solid fa-arrow-right"></i></a>
       </div>
-
-      <div class="cards-grid">
-        <div class="case-card" onclick="window.location.href='case-details.html'" style="cursor:pointer;">
-          <div class="card-thumb"><i class="fa-solid fa-dog"></i></div>
-          <div class="card-body">
-            <div class="card-title-row">
-              <h4>Case #6969</h4>
-              <span class="tag tag-assigned">Rescue Assigned</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="bg-cream-card border border-bdr rounded-xl p-4 flex gap-4 cursor-pointer hover:shadow-md transition" onclick="window.location.href='case-details.html'">
+            <div class="w-20 h-20 shrink-0 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-3xl text-gray-400"><i class="fa-solid fa-dog"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                <h4 class="font-extrabold">Case #6969</h4>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">Rescue Assigned</span>
+              </div>
+              <ul class="text-xs text-gray-500 space-y-1 mb-2">
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-scroll w-3"></i>Brown dog near market</li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot w-3"></i>Holycross Market, San Bartolome</li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-calendar-days w-3"></i>Oct. 27, 2026 • 10:29 AM</li>
+              </ul>
+              <div class="text-xs px-2.5 py-1.5 rounded-md bg-coral-light text-coral"><i class="fa-solid fa-paw mr-1"></i>A Rescue volunteer has accepted the mission.</div>
             </div>
-            <ul class="meta-list">
-              <li><i class="fa-solid fa-scroll"></i> Brown dog near market</li>
-              <li><i class="fa-solid fa-location-dot"></i> Holycross Market, San Bartolome</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026 • 10:29 AM</li>
-            </ul>
-            <div class="status-banner status-coral"><i class="fa-solid fa-paw"></i> A Rescue volunteer has accepted the mission.</div>
           </div>
-        </div>
-
-        <div class="case-card" onclick="window.location.href='case-details.html'" style="cursor:pointer;">
-          <div class="card-thumb"><i class="fa-solid fa-cat"></i></div>
-          <div class="card-body">
-            <div class="card-title-row">
-              <h4>Case #6767</h4>
-              <span class="tag tag-reported">Reported</span>
+          <div class="bg-cream-card border border-bdr rounded-xl p-4 flex gap-4 cursor-pointer hover:shadow-md transition" onclick="window.location.href='case-details.html'">
+            <div class="w-20 h-20 shrink-0 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-3xl text-gray-400"><i class="fa-solid fa-cat"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                <h4 class="font-extrabold">Case #6767</h4>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">Reported</span>
+              </div>
+              <ul class="text-xs text-gray-500 space-y-1 mb-2">
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-scroll w-3"></i>Domestic Cat Oreo</li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot w-3"></i>Brgy. Sta Lucia</li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-calendar-days w-3"></i>Oct. 27, 2026 • 10:29 AM</li>
+              </ul>
+              <div class="text-xs px-2.5 py-1.5 rounded-md bg-peach-light text-brown"><i class="fa-solid fa-paw mr-1"></i>Case is pending for approval.</div>
             </div>
-            <ul class="meta-list">
-              <li><i class="fa-solid fa-scroll"></i> Domestic Cat Oreo</li>
-              <li><i class="fa-solid fa-location-dot"></i> Brgy. Sta Lucia</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026 • 10:29 AM</li>
-            </ul>
-            <div class="status-banner status-peach"><i class="fa-solid fa-paw"></i> Case is pending for approval.</div>
           </div>
-        </div>
       </div>
-
-      <div class="donate-banner">
-        <div class="banner-icon-bg"><i class="fa-solid fa-heart"></i></div>
-        <div class="banner-info">
-          <h4>Help The Strays</h4>
-          <p>Your donation goes a long way in providing food, medical care, and safer future for stray animals.</p>
+      <div class="bg-brown rounded-xl p-5 flex flex-wrap items-center gap-4 relative overflow-hidden">
+        <div class="w-12 h-12 shrink-0 bg-peach rounded-full flex items-center justify-center text-2xl text-white"><i class="fa-solid fa-heart"></i></div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white font-extrabold">Help The Strays</h4>
+          <p class="text-white/80 text-xs mt-0.5">Your donation goes a long way in providing food, medical care, and a safer future for stray animals.</p>
         </div>
-        <div class="handwritten-note">Small Contributions Makes Big Changes</div>
-        <a href="donate.html" class="btn btn-white"><i class="fa-solid fa-heart" style="color:#E35336;"></i> Donate</a>
+        <span class="font-hand text-xl text-white -rotate-6 hidden sm:block">Small Contributions Makes Big Changes</span>
+        <a href="donate.html" class="flex items-center gap-2 bg-white text-brown-dark font-bold px-4 py-2 rounded-lg text-sm shrink-0"><i class="fa-solid fa-heart text-coral"></i> Donate</a>
       </div>
     </main>
-
-    <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
-      <div class="sidebar-callout">
-        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
-        <p>Check the map first to prevent duplicate entries for the same stray animal.</p>
-        <a href="map.html" class="btn btn-brown btn-block">Check the Map <i class="fa-solid fa-chevron-right"></i></a>
+    <aside class="flex flex-col gap-4">
+      <div class="bg-cream-card border border-bdr rounded-xl px-4 py-3 flex justify-between items-center font-extrabold text-sm">
+        <span>Notification</span><i class="fa-solid fa-bell text-brown"></i>
       </div>
-      <div class="sidebar-card sidebar-map-card" onclick="window.location.href='map.html'" style="cursor:pointer;">
-        <div class="mini-map-header"><span>Nearby Shelters</span></div>
-        <div class
+      <div class="bg-peach rounded-xl p-4 text-brown-dark">
+        <div class="flex justify-between items-center font-extrabold mb-2 text-sm">
+          <span>Before you report</span><i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <p class="text-xs leading-relaxed mb-1">Check the map first to prevent duplicate entries for the same stray animal.</p>
+        <a href="map.html" class="mt-3 flex items-center justify-center gap-2 w-full bg-brown text-white font-bold py-2 rounded-lg text-sm">Check the Map <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+      <div class="bg-cream-card border border-bdr rounded-xl p-3 cursor-pointer" onclick="window.location.href='map.html'">
+        <p class="font-bold text-xs mb-2">Nearby Shelters</p>
+        <div class="h-32 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-4xl text-gray-400"><i class="fa-solid fa-map-location-dot"></i></div>
+        <a href="map.html" class="text-coral text-xs font-bold mt-2 flex items-center gap-1">View Map <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </aside>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
