@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect | Account</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-wrap{max-width:900px;margin:40px auto;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .auth-card{background:var(--color-card-bg);border:1px solid var(--color-border-subtle);border-radius:14px;padding:24px}
+    .auth-card h2{margin-bottom:16px}.auth-card .form-group input{width:100%;padding:10px 12px;border:1px solid var(--color-border-subtle);border-radius:8px;font:inherit}
+    .auth-card button{margin-top:8px}.auth-message{grid-column:1/-1;text-align:center;padding:10px;color:var(--color-coral-red);font-weight:700}
+    @media(max-width:700px){.auth-wrap{grid-template-columns:1fr;margin:16px auto}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left"><div class="logo-circle"></div><span class="logo-text">PawTect</span></div>
+    <div class="nav-links"><a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a></div>
+  </nav>
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <h2><i class="fa-solid fa-right-to-bracket"></i> Log in</h2>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group"><label>Email</label><input type="email" name="email" required autocomplete="email"></div>
+        <div class="form-group"><label>Password</label><input type="password" name="password" required autocomplete="current-password"></div>
+        <button class="btn btn-coral btn-block" type="submit">Log in</button>
+      </form>
+    </section>
+    <section class="auth-card">
+      <h2><i class="fa-solid fa-user-plus"></i> Create reporter account</h2>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group"><label>First name</label><input name="firstName" required></div>
+        <div class="form-group"><label>Last name</label><input name="lastName" required></div>
+        <div class="form-group"><label>Username (optional)</label><input name="username"></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" required autocomplete="email"></div>
+        <div class="form-group"><label>Contact number</label><input name="contactNumber"></div>
+        <div class="form-group"><label>Birthday</label><input type="date" name="birthday"></div>
+        <div class="form-group"><label>Password (minimum 8 characters)</label><input type="password" name="password" minlength="8" required autocomplete="new-password"></div>
+        <button class="btn btn-peach btn-block" type="submit">Create account</button>
+      </form>
+    </section>
+    <p id="authMessage" class="auth-message" aria-live="polite"></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

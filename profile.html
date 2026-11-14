@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect - User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle"></div>
+      <span class="logo-text">PawTect</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
+      <a href="rescue-cases.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
+      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
+      <a href="profile.html" class="nav-btn active"><i class="fa-solid fa-user"></i> Profile</a>
+    </nav>
+    <div class="nav-right">
+      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;">
+        <span id="navUserName">Rene Buttercoconut</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+      <div class="profile-circle"></div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <main class="content-area">
+      <div class="page-title-bar">
+        <div class="title-with-icon">
+          <i class="fa-solid fa-user header-paw"></i>
+          <h2>Profile</h2>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        
+        <!-- LEFT AVATAR CARD -->
+        <div class="profile-avatar-card">
+          <div class="avatar-circle-large">
+            <i class="fa-solid fa-user"></i>
+            <div class="camera-badge" onclick="triggerAvatarUpload()">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+          <h3 id="displayFullName">Rene Buttercoconut</h3>
+          <p class="user-location-sub"><i class="fa-solid fa-location-dot"></i> <span id="displayLocation">Quezon City</span></p>
+          
+          <div class="user-note-box">
+            <div class="note-header">
+              <span>Rene's Note:</span>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('Note')"></i>
+            </div>
+            <p id="displayNote">“MAMAAAAAAAAAAAA”</p>
+            <div id="editNoteGroup" class="edit-field-group hidden">
+              <input type="text" id="inputNote" value="MAMAAAAAAAAAAAA" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('Note')">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT EDITABLE ACCOUNT & SETTINGS -->
+        <div class="profile-details-column">
+          
+          <!-- Personal Information Card -->
+          <div class="donation-form-card">
+            <h4 class="card-section-title-brown">
+              <i class="fa-solid fa-id-card"></i> Personal Information:
+            </h4>
+
+            <!-- Full Name -->
+            <div class="info-row">
+              <div class="info-view">
+                <span class="info-label">Full Name:</span>
+                <strong id="valFullName">Rene Buttercoconut</strong>
+              </div>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('FullName')"></i>
+            </div>
+            <div id="editFullNameGroup" class="edit-row-inline hidden">
+              <input type="text" id="inputFullName" value="Rene Buttercoconut" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('FullName')">Save</button>
+            </div>
+
+            <!-- Location -->
+            <div class="info-row">
+              <div class="info-view">
+                <span class="info-label">Location:</span>
+                <strong id="valLocation">Quezon City</strong>
+              </div>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('Location')"></i>
+            </div>
+            <div id="editLocationGroup" class="edit-row-inline hidden">
+              <input type="text" id="inputLocation" value="Quezon City" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('Location')">Save</button>
+            </div>
+
+            <!-- Email -->
+            <div class="info-row">
+              <div class="info-view">
+                <span class="info-label">Email:</span>
+                <strong id="valEmail">renebuttercoconut@gmail.com</strong>
+              </div>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('Email')"></i>
+            </div>
+            <div id="editEmailGroup" class="edit-row-inline hidden">
+              <input type="email" id="inputEmail" value="renebuttercoconut@gmail.com" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('Email')">Save</button>
+            </div>
+
+            <!-- Contact -->
+            <div class="info-row">
+              <div class="info-view">
+                <span class="info-label">Contact:</span>
+                <strong id="valContact">0967 676 6767</strong>
+              </div>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('Contact')"></i>
+            </div>
+            <div id="editContactGroup" class="edit-row-inline hidden">
+              <input type="text" id="inputContact" value="0967 676 6767" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('Contact')">Save</button>
+            </div>
+
+            <!-- Change Password -->
+            <div class="info-row">
+              <div class="info-view">
+                <span class="info-label">Change Password:</span>
+                <strong id="valPassword">••••••••••••••••</strong>
+              </div>
+              <i class="fa-solid fa-pen-to-square edit-icon" onclick="toggleEditField('Password')"></i>
+            </div>
+            <div id="editPasswordGroup" class="edit-row-inline hidden">
+              <input type="password" id="inputPassword" placeholder="Enter new password" />
+              <button class="btn btn-coral btn-sm" onclick="saveProfileField('Password')">Update</button>
+            </div>
+          </div>
+
+          <!-- Settings Card -->
+          <div class="donation-form-card">
+            <h4 class="card-section-title-brown">
+              <i class="fa-solid fa-gear"></i> Settings
+            </h4>
+            <div class="settings-nav-item" onclick="alert('Notification Preferences Configured')">
+              <span><i class="fa-solid fa-bell"></i> Notification Preference</span>
+              <span class="sub-link-text">Manage your alerts and updates <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            <div class="settings-nav-item" onclick="alert('Privacy Settings Configured')">
+              <span><i class="fa-solid fa-lock"></i> Privacy Settings</span>
+              <span class="sub-link-text">Control your data and visibility <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            <div class="settings-nav-item" onclick="alert('Contacting Developers...')">
+              <span><i class="fa-solid fa-headset"></i> Contact US</span>
+              <span class="sub-link-text">Contact the developers <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT FIXED SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+      <div class="sidebar-callout">
+        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
+        <p>Check the map first to avoid duplicate reports.</p>
+        <a href="map.html" class="btn btn-brown btn-block">Check the Map <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

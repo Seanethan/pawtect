@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect - Rescue Map</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="initMap()">
+
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle"></div>
+      <span class="logo-text">PawTect</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="map.html" class="nav-btn active"><i class="fa-solid fa-map-location-dot"></i> Map</a>
+      <a href="rescue-cases.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
+      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
+      <!-- -->
+      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    </nav>
+    <div class="nav-right">
+      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
+      <div class="profile-circle"></div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <main class="content-area">
+      <div class="section-header">
+        <h3><i class="fa-solid fa-map-location-dot"></i> Rescue Map & Facilities</h3>
+      </div>
+
+      <div class="map-container-box">
+        <div class="map-controls">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="mapSearchInput" placeholder="Search shelter, clinic, or report..." onkeyup="filterMapPins()" />
+          </div>
+          <div class="filter-pills">
+            <button class="pill active" onclick="setMapFilter('all', this)">All</button>
+            <button class="pill" onclick="setMapFilter('shelter', this)">Shelters</button>
+            <button class="pill" onclick="setMapFilter('clinic', this)">Clinics</button>
+            <button class="pill" onclick="setMapFilter('reported', this)">Reported</button>
+          </div>
+        </div>
+        <div id="googleMap" class="interactive-map"></div>
+      </div>
+      <!-- NEAREST LOCATIONS -->
+<div class="nearest-locations-section">
+  <div class="nearest-header">
+    <div>
+      <h3><i class="fa-solid fa-location-dot"></i> Nearby Locations</h3>
+      <p>Showing the 5 nearest locations based on your current position.</p>
+    </div>
+    <span class="nearest-count" id="nearestCount">0 Locations</span>
+  </div>
+
+  <div id="nearestLocationsList" class="nearest-locations-list">
+    <div class="nearest-loading">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <span>Finding nearby locations...</span>
+    </div>
+  </div>
+</div>
+
+      <div class="warning-banner">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>The map does not guarantee a facility is open or will accept an animal. Always verify prior to transit.</span>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+      <div class="sidebar-callout">
+        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
+        <p>Check the map first to prevent duplicate entries for the same stray animal.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Google Maps API with your active API key -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzgUK_fjOEvzDUxXXPc5vAzBE1EiR9pHg&callback=initMap"></script>
+  <script src="script.js"></script>
+</body>
+</html>
