@@ -1,0 +1,265 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAWTECT | Admin Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared PawTect CSS -->
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+
+<body class="admin-page">
+<div class="app">
+  <aside class="sidebar">
+    <div class="profile"><div class="avatar"></div><div><strong>Nicky Nicolas</strong><small>Admin 1</small></div></div>
+    <nav class="nav" aria-label="Main navigation">
+
+    <!-- Dashboard -->
+    <button class="active" data-page="dashboard">
+        <span class="nav-icon">⌂</span>
+        Dashboard
+    </button>
+
+    <!-- Account Management Dropdown -->
+    <button
+        class="account-toggle"
+        id="accountToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="accountSubmenu"
+    >
+        <span class="nav-icon">♙</span>
+        <span class="nav-label">Account Management</span>
+        <span class="dropdown-arrow">⌄</span>
+    </button>
+
+    <!-- Dropdown Options -->
+    <div class="account-submenu" id="accountSubmenu">
+
+        <button class="subnav" data-page="users">
+            <span class="nav-icon">♧</span>
+            User Management
+        </button>
+
+        <button class="subnav" data-page="staff">
+            <span class="nav-icon">♟</span>
+            Staff Management
+        </button>
+
+    </div>
+
+    <!-- Reports -->
+    <button data-page="reports">
+        <span class="nav-icon">▤</span>
+        Reports
+    </button>
+
+</nav>
+    <div class="sidebar-bottom"><button>⚙ Settings</button><button>ⓘ Help</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><span id="topTitle">Home</span><div class="top-user"><div class="avatar"></div><span>⌄</span></div></header>
+    <section class="content">
+      <section id="dashboard" class="page">
+        <div class="welcome">Welcome back, <span>Nicky!</span></div>
+        <div class="quick-stats">
+          <div class="quick"><div class="stat-icon peach">⚑</div><div><small>Flag Reports</small><strong>4</strong><em>↑ 2 reports this week</em></div></div>
+          <div class="quick"><div class="stat-icon peach">⚠</div><div><small>Urgent Cases</small><strong>8</strong><em>Needs attention</em></div></div>
+          <div class="quick"><div class="stat-icon green">♧</div><div><small>Rescued Animals</small><strong>10</strong><em>↑ 4 this week</em></div></div>
+        </div>
+        <div class="alert"><span>⚠ Multiple strays have been reported in urgent the past 7 days</span><button class="primary" data-go="reports">Review reports ›</button></div>
+        <div class="dashboard-grid">
+          <div class="chart-card"><h3>Report Overview</h3>
+            <svg class="chart" viewBox="0 0 560 220" role="img" aria-label="Reports trend chart">
+              <g stroke="#e8e3d8" stroke-width="1"><path d="M45 20H540M45 60H540M45 100H540M45 140H540M45 180H540"/></g>
+              <g fill="#777" font-size="10"><text x="7" y="183">0</text><text x="3" y="143">40</text><text x="3" y="103">80</text><text x="0" y="63">120</text><text x="0" y="23">160</text><text x="45" y="205">2017</text><text x="145" y="205">2018</text><text x="245" y="205">2019</text><text x="345" y="205">2020</text><text x="445" y="205">2021</text><text x="520" y="205">2022</text></g>
+              <polyline points="45,165 145,120 245,82 345,58 445,30 520,8" fill="none" stroke="#4b75c8" stroke-width="3"/>
+              <polyline points="45,55 145,105 245,145 345,165 445,170 520,174" fill="none" stroke="#ed8b3b" stroke-width="3"/>
+              <polyline points="45,100 145,130 245,90 345,110 445,95 520,115" fill="none" stroke="#999" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="recent"><h3>Recent Reports</h3>
+            <div class="report-mini"><div class="thumb"></div><div><strong>Near QC Hall</strong><span class="priority">Medium Urgency</span><br><small>10 mins ago</small></div></div>
+            <div class="report-mini"><div class="thumb"></div><div><strong>Near Holy Cross</strong><span class="priority">Extreme Urgency</span><br><small>32 mins ago</small></div></div>
+            <div class="report-mini"><div class="thumb"></div><div><strong>Near Nova Plaza</strong><span class="priority">Medium Urgency</span><br><small>An hour ago</small></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="users" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">♟</div><div><h1>User Management</h1><p>Manage and monitor registered users of the system</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">♟</span>Total Users</div><strong>1,250</strong><div class="trend">↑ 12% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon green">●</span>Active Users</div><strong>1,180</strong><div class="trend">↑ 10% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon blue">♟</span>New This Month</div><strong>85</strong><div class="trend">↑ 10% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon red">⊘</span>Suspended Users</div><strong>12</strong><div class="trend down">↓ 4% this month</div></div>
+        </div>
+        <div class="panel">
+          <div class="toolbar"><div class="search"><input id="userSearch" placeholder="Search by name, email, or user ID..."></div><select id="userStatus"><option value="">All Status</option><option>Active</option><option>Suspended</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>User ID</th><th>Full Name</th><th>Email</th><th>Contact Number</th><th>Status</th><th>Actions</th></tr></thead><tbody id="userRows"></tbody></table></div>
+          <div class="pagination"><span id="userCount">Showing 1-7 out of 1,250 users</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>›</button></div></div>
+        </div>
+      </section>
+
+      <section id="staff" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">♟</div><div><h1>Staff Management</h1><p>Manage and monitor personnel of the system</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">♟</span>Total Staff</div><strong id="staffTotal">24</strong><div class="trend">↑ 4% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon green">●</span>Available</div><strong>16</strong><div class="trend">↑ 12% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon blue">♟</span>On Rescue Duty</div><strong>6</strong><div class="trend">↑ 20% this month</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon gray">◉</span>Off Duty</div><strong>2</strong><div class="trend down">↓ 10% this month</div></div>
+        </div>
+        <div class="panel">
+          <div class="toolbar"><div class="search"><input id="staffSearch" placeholder="Search by name, email, or user ID..."></div><select id="staffStatus"><option value="">All Status</option><option>Available</option><option>On Duty</option><option>Offline</option><option>Suspended</option></select><button class="primary" id="addStaff">+ Add Staff</button></div>
+          <div class="table-wrap"><table><thead><tr><th>User ID</th><th>Full Name</th><th>Email</th><th>Contact Number</th><th>Status</th><th>Actions</th></tr></thead><tbody id="staffRows"></tbody></table></div>
+          <div class="pagination"><span id="staffCount">Showing 1-7 out of 24 users</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>›</button></div></div>
+        </div>
+      </section>
+
+      <section id="reports" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">▤</div><div><h1>Report Management</h1><p>Review and manage submitted animal rescue reports</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">☷</span>Total Reports</div><strong>128</strong><div class="trend">↑ 12% this week</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">◷</span>Pending</div><strong>24</strong><div class="trend">↑ 5% this week</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">⚠</span>Urgent</div><strong>8</strong><div class="trend down">↑ 2% this week</div></div>
+        </div>
+        <div class="panel">
+          <div class="filter-layout">
+            <div><div class="toolbar"><div class="search"><input id="reportSearch" placeholder="Search by report ID, location, keyword..."></div><select id="reportStatus"><option value="">All Status</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select><select><option>Last 7 days</option><option>Last 30 days</option><option>All time</option></select></div>
+              <div class="table-wrap"><table><thead><tr><th> </th><th>Report ID</th><th>Photo</th><th>Animal Type</th><th>Location</th><th>Date & Time</th><th>Status</th><th>Priority</th><th>Actions</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+              <div class="pagination"><span>Showing 1-6 out of 128 reports</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>»</button></div></div>
+            </div>
+            <aside class="filter-box"><h3>⚲ Quick Filters</h3><b>Status</b><label><input type="checkbox"> All</label><label><input type="checkbox"> Pending</label><label><input type="checkbox"> In Progress</label><label><input type="checkbox"> Resolved</label><hr style="border:0;border-top:1px solid #eee;margin:10px 0"><b>Priority</b><label><input type="checkbox"> Urgent</label><label><input type="checkbox"> High</label><label><input type="checkbox"> Normal</label><label><input type="checkbox"> Low</label><button class="clear" id="clearFilters">Clear Filters</button></aside>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="staffModal">
+  <div class="modal">
+    <h2>Add Staff Member</h2>
+    <form id="staffForm">
+      <div class="form-row"><label for="newName">Full Name</label><input id="newName" required placeholder="Enter full name"></div>
+      <div class="form-row"><label for="newEmail">Email</label><input id="newEmail" type="email" required placeholder="name@example.com"></div>
+      <div class="form-row"><label for="newPhone">Contact Number</label><input id="newPhone" required placeholder="09XX XXX XXXX"></div>
+      <div class="form-row"><label for="newStatus">Status</label><select id="newStatus"><option>Available</option><option>On Duty</option><option>Offline</option></select></div>
+      <div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button class="primary" type="submit">Add Staff</button></div>
+    </form>
+  </div>
+</div>
+<script>
+const users=[
+ ['U001','Sarah Ethan de Lara','sarah@gmail.com','0927 394 7291','Active'],
+ ['U002','Rene Buttercoconut','mama@gmail.com','0948 993 8483','Active'],
+ ['U003','Nicky Binat','Nicky@gmail.com','0967 676 6767','Suspended'],
+ ['U004','Tung Tung Sahur','Sahur@gmail.com','0969 678 1234','Active'],
+ ['U005','Laufey Swift','Laufey@gmail.com','0937 812 9474','Active'],
+ ['U006','Rodrigo Duterte','DU30@gmail.com','0946 373 2373','Suspended'],
+ ['U007','Renekton Kaju','Ror@gmail.com','0969 678 1234','Active']
+];
+const staff=[
+ ['S001','Sarah Ethan de Lara','sarah@gmail.com','0927 394 7291','Available'],
+ ['S002','Rene Buttercoconut','mama@gmail.com','0948 993 8483','Available'],
+ ['S003','Nicky Binat','Nicky@gmail.com','0967 676 6767','Suspended'],
+ ['S004','Tung Tung Sahur','Sahur@gmail.com','0969 678 1234','On Duty'],
+ ['S005','Laufey Swift','Laufey@gmail.com','0937 812 9474','On Duty'],
+ ['S006','Rodrigo Duterte','DU30@gmail.com','0946 373 2373','Suspended'],
+ ['S007','Renekton Kaju','Ror@gmail.com','0969 678 1234','Offline']
+];
+const reports=[
+ ['RP-001','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','Pending','Urgent'],
+ ['RP-002','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','In Progress','Normal'],
+ ['RP-003','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','Pending','Urgent'],
+ ['RP-004','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','Resolved','Urgent'],
+ ['RP-005','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','Pending','Urgent'],
+ ['RP-006','Dog','Injured','Quezon City, San Bartolome','Oct 24, 10:23 AM','Pending','Urgent']
+];
+function badge(s){let c={'Active':'active-status','Available':'available','Suspended':'suspended','On Duty':'onduty','Offline':'offline','Pending':'pending','In Progress':'progress','Resolved':'resolved','Urgent':'suspended','Normal':'available'}[s]||'offline';return `<span class="status ${c}">${s}</span>`}
+function actions(){return `<div class="actions"><button title="View" aria-label="View">⌕</button><button title="Edit" aria-label="Edit">✎</button><button title="More" aria-label="More">☰</button></div>`}
+function renderPeople(data,target,query,status){const q=(document.getElementById(query).value||'').toLowerCase(),s=document.getElementById(status).value;const filtered=data.filter(r=>r.join(' ').toLowerCase().includes(q)&&(!s||r[4]===s));document.getElementById(target).innerHTML=filtered.length?filtered.map(r=>`<tr>${r.slice(0,4).map(x=>`<td>${x}</td>`).join('')}<td>${badge(r[4])}</td><td>${actions()}</td></tr>`).join(''):`<tr><td colspan="6" class="empty">No matching records found.</td></tr>`;document.getElementById(target.replace('Rows','Count')).textContent=`Showing ${filtered.length?1:0}-${filtered.length} out of ${target==='userRows'?'1,250':'24'} users`}
+function renderReports(){const q=document.getElementById('reportSearch').value.toLowerCase(),s=document.getElementById('reportStatus').value;const f=reports.filter(r=>r.join(' ').toLowerCase().includes(q)&&(!s||r[5]===s));document.getElementById('reportRows').innerHTML=f.map(r=>`<tr><td><input type="checkbox"></td><td>${r[0]}</td><td><span class="report-photo"></span></td><td>${r[1]}<br><small>${r[2]}</small></td><td>${r[3]}</td><td>${r[4]}</td><td>${badge(r[5])}</td><td>${badge(r[6])}</td><td>${actions()}</td></tr>`).join('')||'<tr><td colspan="9" class="empty">No matching reports found.</td></tr>'}
+function refresh(){renderPeople(users,'userRows','userSearch','userStatus');renderPeople(staff,'staffRows','staffSearch','staffStatus');renderReports()}
+refresh();
+['userSearch','userStatus','staffSearch','staffStatus','reportSearch','reportStatus'].forEach(id=>document.getElementById(id).addEventListener(id.toLowerCase().includes('search')?'input':'change',refresh));
+// Account Management dropdown
+const accountToggle = document.getElementById('accountToggle');
+const accountSubmenu = document.getElementById('accountSubmenu');
+
+accountToggle.addEventListener('click', () => {
+    const isOpen = accountSubmenu.classList.toggle('open');
+
+    accountToggle.classList.toggle('open', isOpen);
+    accountToggle.setAttribute('aria-expanded', isOpen);
+});
+
+// Page navigation
+document.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        showPage(btn.dataset.page);
+    });
+});
+
+// Dashboard buttons that navigate to other pages
+document.querySelectorAll('[data-go]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        showPage(btn.dataset.go);
+    });
+});
+
+// Change displayed page
+function showPage(page) {
+
+    // Show selected page
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.toggle('hidden', p.id !== page);
+    });
+
+    // Update navigation active states
+    document.querySelectorAll('.nav button[data-page]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.page === page);
+    });
+
+    // Keep Account Management highlighted for its submenu pages
+    const isAccountPage = page === 'users' || page === 'staff';
+
+    accountToggle.classList.toggle('active', isAccountPage);
+
+    // Automatically expand dropdown when viewing either submenu page
+    if (isAccountPage) {
+        accountSubmenu.classList.add('open');
+        accountToggle.classList.add('open');
+        accountToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    // Update top navigation title
+    const titles = {
+        dashboard: 'Home',
+        users: 'User Management',
+        staff: 'Staff Management',
+        reports: 'Reports'
+    };
+
+    document.getElementById('topTitle').textContent = titles[page] || 'Home';
+}
+const modal=document.getElementById('staffModal');
+document.getElementById('addStaff').onclick=()=>modal.classList.add('show');
+document.getElementById('cancelModal').onclick=()=>modal.classList.remove('show');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+document.getElementById('staffForm').addEventListener('submit',e=>{e.preventDefault();const id='S'+String(staff.length+1).padStart(3,'0');staff.push([id,document.getElementById('newName').value,document.getElementById('newEmail').value,document.getElementById('newPhone').value,document.getElementById('newStatus').value]);document.getElementById('staffTotal').textContent=24+(staff.length-7);e.target.reset();modal.classList.remove('show');refresh()});
+document.getElementById('clearFilters').onclick=()=>{document.getElementById('reportSearch').value='';document.getElementById('reportStatus').value='';document.querySelectorAll('.filter-box input').forEach(x=>x.checked=false);refresh()};
+</script>
+</body>
+</html>

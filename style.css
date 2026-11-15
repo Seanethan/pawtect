@@ -367,3 +367,123 @@ body {
   border-radius: 20px;
   transition: width 0.4s ease;
 }
+
+.auth-wrap {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 24px;
+}
+
+.auth-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.auth-card .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.auth-card button {
+    margin-top: 8px;
+}
+
+.signup-link {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: var(--color-coral-red);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.auth-message {
+    text-align: center;
+    padding: 10px;
+    color: var(--color-coral-red);
+    font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .auth-wrap {
+        margin: 16px auto;
+    }
+}
+
+.auth-wrap {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 24px;
+}
+
+.auth-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.auth-card .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.auth-card button {
+    margin-top: 8px;
+}
+
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--color-coral-red);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.auth-message {
+    text-align: center;
+    padding: 10px;
+    color: var(--color-coral-red);
+    font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .auth-wrap {
+        margin: 16px auto;
+    }
+}

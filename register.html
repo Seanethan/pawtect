@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect | Register</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo-circle"></div>
+      <span class="logo-text">PawTect</span>
+    </div>
+  </nav>
+
+  <main class="auth-wrap">
+
+    <section class="auth-card">
+
+      <h2>
+        <i class="fa-solid fa-user-plus"></i>
+        Create reporter account
+      </h2>
+
+      <form onsubmit="handleRegister(event)">
+
+        <div class="form-group">
+          <label>First name</label>
+          <input name="firstName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Last name</label>
+          <input name="lastName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Username (optional)</label>
+          <input name="username">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label>Contact number</label>
+          <input name="contactNumber">
+        </div>
+
+        <div class="form-group">
+          <label>Birthday</label>
+          <input type="date" name="birthday">
+        </div>
+
+        <div class="form-group">
+          <label>Password (minimum 8 characters)</label>
+          <input type="password" name="password" minlength="8" required autocomplete="new-password">
+        </div>
+
+        <button class="btn btn-peach btn-block" type="submit">
+          Create account
+        </button>
+
+      </form>
+
+      <div class="login-link">
+        Already have an account?
+        <br>
+        <a href="login.html">
+          <i class="fa-solid fa-right-to-bracket"></i> Log in
+        </a>
+      </div>
+
+    </section>
+
+    <p id="authMessage" class="auth-message" aria-live="polite"></p>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
