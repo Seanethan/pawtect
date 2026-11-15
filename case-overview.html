@@ -4,149 +4,132 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PawTect - Case Overview</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brown:  { DEFAULT:"#A0522D", dark:"#6E3419", light:"#C68642" },
+            cream:  { DEFAULT:"#F5F5DC", card:"#F8F7EE" },
+            peach:  { DEFAULT:"#F4A460", light:"#FDF0E2" },
+            coral:  { DEFAULT:"#E35336", light:"#FCE8E6" },
+            bdr:    "#E2DAC8",
+            navactive: "#D68B4F",
+          },
+          fontFamily: { sans:["'Plus Jakarta Sans'","sans-serif"], hand:["'Caveat'","cursive"] },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="pawtect.css" />
 </head>
-<body>
+<body class="bg-cream text-brown-dark min-h-screen">
 
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
+  <!-- NAVBAR -->
+  <header class="bg-brown sticky top-0 z-50 shadow-md">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-16">
+      <!-- Left: Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-11.5 h-11.5 rounded-full"><img src="Assets/PawTectLogo.svg" alt="PawTect Logo" class="w-12 h-12 object-contain" /></div>
+        <span class="text-white text-2xl font-bold italic tracking-wide" style="font-family: 'Caveat', cursive;">PawTect</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="index.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="map.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-map-location-dot"></i><span>Map</span></a>
+        <a href="rescue-cases.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white bg-navactive transition-colors"><i class="fa-solid fa-list-check"></i><span>Rescue Cases</span></a>
+        <a href="submit-report.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-bullhorn"></i><span>Report</span></a>
+        <a href="donate.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-heart"></i><span>Donate</span></a>
+        <a href="profile.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+      </nav>
+      <div class="flex md:hidden items-center">
+        <button class="text-white text-2xl px-2" onclick="toggleMobileNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    <nav id="mobileNav" class="hidden md:hidden bg-brown border-t border-white/20 px-4 pb-4 pt-2 flex flex-col gap-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-house w-5 text-center"></i>Home</a>
+        <a href="map.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-map-location-dot w-5 text-center"></i>Map</a>
+        <a href="rescue-cases.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold bg-navactive rounded-lg"><i class="fa-solid fa-list-check w-5 text-center"></i>Rescue Cases</a>
+        <a href="submit-report.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-bullhorn w-5 text-center"></i>Report</a>
+        <a href="donate.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-heart w-5 text-center"></i>Donate</a>
+        <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-user w-5 text-center"></i>Profile</a>
     </nav>
-    <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle"></div>
-    </div>
   </header>
-
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="page-title-bar">
-        <div class="title-with-icon">
-          <i class="fa-solid fa-paw header-paw"></i>
-          <h2>Rescue Cases</h2>
+  <div class="max-w-screen-xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+    <main class="min-w-0">
+      <div class="flex items-center gap-3 mb-5">
+        <i class="fa-solid fa-paw text-2xl text-brown"></i>
+        <h2 class="text-xl font-extrabold">Rescue Cases</h2>
+      </div>
+      <!-- Overview card -->
+      <div class="bg-cream-card border border-bdr rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 mb-5">
+        <div class="w-24 h-24 shrink-0 bg-[#E0DDD0] rounded-xl flex items-center justify-center text-4xl text-gray-400 mx-auto sm:mx-0">
+          <i class="fa-regular fa-image"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <h3 id="caseTitle" class="font-extrabold text-lg">Rescue Case RP-001</h3>
+            <span id="caseStatus" class="bg-red-100 text-red-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Reported</span>
+            <span id="caseUrgency" class="bg-rose-200 text-rose-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Urgent</span>
+            <button class="ml-auto bg-coral text-white text-sm font-bold px-4 py-1.5 rounded-lg" onclick="alert('Request canceled.')">Cancel Request</button>
+          </div>
+          <p class="text-xs text-gray-500 mb-2">For Adoption</p>
+          <p class="text-sm flex items-center gap-2 mb-1"><i class="fa-solid fa-location-dot text-brown"></i><span id="caseLoc">Quezon City, San Bartolome</span></p>
+          <p class="text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-brown"></i><span id="caseDate">Reported on Oct. 24, 2026 - 10:23 AM</span></p>
         </div>
       </div>
-
-      <!-- Overview Header Card -->
-      <div class="overview-main-card">
-        <div class="overview-thumb-box"><i class="fa-regular fa-image"></i></div>
-        <div class="overview-meta-body">
-          <div class="overview-header-line">
-            <h3>Rescue Case #001</h3>
-            <span class="tag tag-reported">Pending</span>
-            <span class="badge badge-rose">Urgent</span>
-            <button class="btn btn-coral" style="margin-left:auto;" onclick="alert('Request canceled.')">Cancel Request</button>
-          </div>
-          <p class="sub-category">For Adoption</p>
-          <div class="location-line"><i class="fa-solid fa-location-dot"></i> Quezon City, San Bartolome</div>
-          <div class="time-line"><i class="fa-solid fa-calendar-days"></i> Reported on Oct. 23, 2026 - 10:30 AM</div>
+      <!-- Status stepper -->
+      <div class="bg-cream-card border border-bdr rounded-xl p-4 sm:p-5 mb-5">
+        <h3 class="font-extrabold mb-4 flex items-center gap-2"><i class="fa-solid fa-compass"></i> Case Status Update</h3>
+        <div id="stepper" class="flex justify-between overflow-x-auto pb-2">
+          <div class="step-wrap done flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm mb-1 bg-peach text-white"><i class="fa-solid fa-check text-xs"></i></div>
+              <span class="text-xs font-bold leading-tight">Report Pending</span>
+            </div>
+          <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm mb-1 border-2 border-bdr text-brown-dark bg-white">2</div>
+              <span class="text-xs font-bold leading-tight">En route</span>
+            </div>
+          <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm mb-1 border-2 border-bdr text-brown-dark bg-white">3</div>
+              <span class="text-xs font-bold leading-tight">Arrived</span>
+            </div>
+          <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm mb-1 border-2 border-bdr text-brown-dark bg-white">4</div>
+              <span class="text-xs font-bold leading-tight">Outcome Submitted</span>
+            </div>
+          <div class="step-wrap  flex flex-col items-center text-center w-1/5 relative z-10">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm mb-1 border-2 border-bdr text-brown-dark bg-white">5</div>
+              <span class="text-xs font-bold leading-tight">Finished</span>
+            </div>
         </div>
       </div>
-
-      <!-- Case Status Update Tracker -->
-      <!-- <div class="progress-card" style="margin-bottom: 20px;">
-        <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:16px;"><i class="fa-solid fa-compass"></i> Case Status Update</h3>
-        <div class="timeline-stepper">
-          <div class="step completed">
-            <div class="step-node">1</div>
-            <span class="step-title">Report Pending</span>
+      <!-- Details card -->
+      <div class="bg-cream-card border border-bdr rounded-xl p-4 sm:p-5">
+        <h3 class="font-extrabold flex items-center gap-2 mb-4"><i class="fa-solid fa-paw text-brown"></i> Case Details</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-3 text-sm">
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Animal Type</strong><span id="dType">Dog</span></div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Breed</strong>--</div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Size</strong>--</div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Color</strong>--</div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Condition</strong><span id="dCondition">Injured</span></div>
           </div>
-          <div class="step">
-            <div class="step-node">2</div>
-            <span class="step-title">En route</span>
-          </div>
-          <div class="step">
-            <div class="step-node">3</div>
-            <span class="step-title">Arrived at the Location</span>
-          </div>
-          <div class="step">
-            <div class="step-node">4</div>
-            <span class="step-title">Rescue Outcome Submitted</span>
-          </div>
-          <div class="step">
-            <div class="step-node">5</div>
-            <span class="step-title">Report Finish</span>
+          <div class="space-y-3 text-sm sm:border-l sm:border-bdr sm:pl-6">
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Location Found</strong><span id="dLoc">Quezon City, San Bartolome</span></div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Date Reported</strong><span id="dDate">Oct. 24, 2026, 10:23 AM</span></div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Reported By</strong><span id="dBy">Rene Buttercoconut</span></div>
+            <div><strong class="block text-xs text-gray-500 mb-0.5">Description</strong><span id="dDesc">Injured stray found near the market, unable to walk.</span></div>
           </div>
         </div>
-      </div> -->
-
-      <!-- Case Status Update Tracker -->
-<div class="progress-card" style="margin-bottom: 20px;">
-  <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:20px;">
-    <i class="fa-solid fa-compass"></i> Case Status Update
-  </h3>
-
-  <!-- Progress Bar -->
-  <div class="status-progress-bar">
-    <div class="status-progress-fill" style="width: 0%;"></div>
+      </div></main>
+    <aside class="flex flex-col gap-4"><div class="bg-cream-card border border-bdr rounded-xl px-4 py-3 flex justify-between items-center font-extrabold text-sm">
+        <span>Notification</span><i class="fa-solid fa-bell text-brown"></i>
+      </div></aside>
   </div>
-
-  <!-- Timeline Steps -->
-  <div class="timeline-stepper">
-    <div class="step completed">
-      <div class="step-node">1</div>
-      <span class="step-title">Report Pending</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">2</div>
-      <span class="step-title">En route</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">3</div>
-      <span class="step-title">Arrived at the Location</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">4</div>
-      <span class="step-title">Rescue Outcome Submitted</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">5</div>
-      <span class="step-title">Report Finish</span>
-    </div>
-  </div>
-</div>
-
-      <!-- Detailed Specifications Card -->
-      <div class="overview-details-card">
-        <div class="card-section-title"><i class="fa-solid fa-paw"></i><h3>Case Details</h3></div>
-        <div class="two-column-details">
-          <div class="detail-column">
-            <div class="detail-row"><strong>Animal Type:</strong> <br>Cat</div>
-            <div class="detail-row"><strong>Breed:</strong> <br>--</div>
-            <div class="detail-row"><strong>Size:</strong> <br>--</div>
-            <div class="detail-row"><strong>Color:</strong> <br>--</div>
-            <div class="detail-row"><strong>Condition:</strong> <br>Injured (left front leg, unable to walk)</div>
-          </div>
-          <div class="column-divider"></div>
-          <div class="detail-column">
-            <div class="detail-row"><strong>Location Found:</strong> <br>Quezon City -- Commonwealth</div>
-            <div class="detail-row"><strong>Date Reported:</strong> <br>Oct. 24, 2080 -- 8:30 PM</div>
-            <div class="detail-row"><strong>Reported By:</strong> <br>Rene Bombaclat</div>
-            <div class="detail-row"><strong>Description:</strong> <br>Teach me how to doggie, tteach me how to doggie, Turuan moko nyan ttutuan moko nyan</div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
-    </aside>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>

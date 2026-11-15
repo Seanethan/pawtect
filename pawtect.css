@@ -1,0 +1,8 @@
+.step-wrap{position:relative}
+.step-wrap::before{content:"";position:absolute;top:18px;left:calc(-50% + 20px);right:calc(50% + 20px);height:2px;background:#E2DAC8;z-index:0}
+.step-wrap.done::before{background:#F4A460}
+.step-wrap:first-child::before{display:none}
+.pill-scroll{-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pill-scroll::-webkit-scrollbar{display:none}
+.active-pill,.active-pill-cat{background:#F4A460!important;color:#fff!important}
+@keyframes userPulse{70%{box-shadow:0 0 0 14px rgba(47,128,237,0)}100%{box-shadow:0 0 0 0 rgba(47,128,237,0)}}

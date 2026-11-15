@@ -1,92 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect | Register</title>
-
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawTect - Create account</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <script>tailwind.config={theme:{extend:{colors:{brown:{DEFAULT:"#A0522D",dark:"#6E3419"},cream:{DEFAULT:"#F5F5DC",card:"#F8F7EE"},peach:"#F4A460",coral:"#E35336",bdr:"#E2DAC8"},fontFamily:{sans:["'Plus Jakarta Sans'","sans-serif"]}}}}</script>
 </head>
-
-<body>
-
-  <nav class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
-    </div>
-  </nav>
-
-  <main class="auth-wrap">
-
-    <section class="auth-card">
-
-      <h2>
-        <i class="fa-solid fa-user-plus"></i>
-        Create reporter account
-      </h2>
-
+<body class="bg-cream text-brown-dark min-h-screen font-sans">
+  <header class="bg-brown shadow-md"><div class="max-w-screen-xl mx-auto flex items-center gap-3 px-4 h-16">
+    <a href="index.html" class="flex items-center gap-3"><img src="Assets/PawTectLogo.svg" alt="" class="w-12 h-12 object-contain" /><span class="text-white text-2xl font-bold italic" style="font-family:'Caveat',cursive">PawTect</span></a>
+  </div></header>
+  <main class="max-w-md mx-auto px-4 py-8">
+    <section class="bg-cream-card border border-bdr rounded-xl p-6">
+      <h2 class="text-xl font-extrabold mb-5 flex items-center gap-2"><i class="fa-solid fa-user-plus text-brown"></i> Create account</h2>
       <form onsubmit="handleRegister(event)">
-
-        <div class="form-group">
-          <label>First name</label>
-          <input name="firstName" required>
-        </div>
-
-        <div class="form-group">
-          <label>Last name</label>
-          <input name="lastName" required>
-        </div>
-
-        <div class="form-group">
-          <label>Username (optional)</label>
-          <input name="username">
-        </div>
-
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" required autocomplete="email">
-        </div>
-
-        <div class="form-group">
-          <label>Contact number</label>
-          <input name="contactNumber">
-        </div>
-
-        <div class="form-group">
-          <label>Birthday</label>
-          <input type="date" name="birthday">
-        </div>
-
-        <div class="form-group">
-          <label>Password (minimum 8 characters)</label>
-          <input type="password" name="password" minlength="8" required autocomplete="new-password">
-        </div>
-
-        <button class="btn btn-peach btn-block" type="submit">
-          Create account
-        </button>
-
+        <label class="block mb-3 text-sm font-bold">First name<input name="firstName" type="text" required class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Last name<input name="lastName" type="text" required class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Username (optional)<input name="username" type="text"  class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Email<input name="email" type="email" required autocomplete="email" class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Contact number<input name="contactNumber" type="tel"  class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Birthday<input name="birthday" type="date"  class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+<label class="block mb-3 text-sm font-bold">Password (min. 8 characters)<input name="password" type="password" required minlength="8" autocomplete="new-password" class="mt-1 w-full border border-bdr rounded-xl px-4 py-2.5 text-sm bg-white outline-none focus:border-brown font-sans font-normal" /></label>
+        <button class="w-full bg-coral text-white font-bold py-2.5 rounded-lg text-sm mt-2 hover:opacity-90" type="submit">Create account</button>
       </form>
-
-      <div class="login-link">
-        Already have an account?
-        <br>
-        <a href="login.html">
-          <i class="fa-solid fa-right-to-bracket"></i> Log in
-        </a>
-      </div>
-
+      <p id="authMessage" class="text-sm text-coral mt-3 min-h-[1.25rem]" aria-live="polite"></p>
+      <p class="text-sm text-center mt-3">Already registered? <a class="text-coral font-bold" href="login.html">Log in</a></p>
     </section>
-
-    <p id="authMessage" class="auth-message" aria-live="polite"></p>
-
   </main>
-
   <script src="script.js"></script>
-
 </body>
 </html>

@@ -3,149 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect - Rescue Cases List</title>
+  <title>PawTect - Rescue Cases</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brown:  { DEFAULT:"#A0522D", dark:"#6E3419", light:"#C68642" },
+            cream:  { DEFAULT:"#F5F5DC", card:"#F8F7EE" },
+            peach:  { DEFAULT:"#F4A460", light:"#FDF0E2" },
+            coral:  { DEFAULT:"#E35336", light:"#FCE8E6" },
+            bdr:    "#E2DAC8",
+            navactive: "#D68B4F",
+          },
+          fontFamily: { sans:["'Plus Jakarta Sans'","sans-serif"], hand:["'Caveat'","cursive"] },
+        }
+      }
+    }
+  </script>
+  <style>
+    .active-pill-cat { background:#F4A460!important; color:#fff!important; }
+  </style>
+  <link rel="stylesheet" href="pawtect.css" />
 </head>
-<body>
-
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
+<body class="bg-cream text-brown-dark min-h-screen">
+  <!-- NAVBAR -->
+  <header class="bg-brown sticky top-0 z-50 shadow-md">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-16">
+      <!-- Left: Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-11.5 h-11.5 rounded-full"><img src="Assets/PawTectLogo.svg" alt="PawTect Logo" class="w-12 h-12 object-contain" /></div>
+        <span class="text-white text-2xl font-bold italic tracking-wide" style="font-family: 'Caveat', cursive;">PawTect</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="index.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="map.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-map-location-dot"></i><span>Map</span></a>
+        <a href="rescue-cases.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white bg-navactive transition-colors"><i class="fa-solid fa-list-check"></i><span>Rescue Cases</span></a>
+        <a href="submit-report.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-bullhorn"></i><span>Report</span></a>
+        <a href="donate.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-heart"></i><span>Donate</span></a>
+        <a href="profile.html" class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+      </nav>
+      <div class="flex md:hidden items-center">
+        <button class="text-white text-2xl px-2" onclick="toggleMobileNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+    <nav id="mobileNav" class="hidden md:hidden bg-brown border-t border-white/20 px-4 pb-4 pt-2 flex flex-col gap-1">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-house w-5 text-center"></i>Home</a>
+        <a href="map.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-map-location-dot w-5 text-center"></i>Map</a>
+        <a href="rescue-cases.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold bg-navactive rounded-lg"><i class="fa-solid fa-list-check w-5 text-center"></i>Rescue Cases</a>
+        <a href="submit-report.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-bullhorn w-5 text-center"></i>Report</a>
+        <a href="donate.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-heart w-5 text-center"></i>Donate</a>
+        <a href="profile.html" class="flex items-center gap-3 px-4 py-3 text-white font-bold hover:bg-white/10 rounded-lg"><i class="fa-solid fa-user w-5 text-center"></i>Profile</a>
     </nav>
-    <div class="nav-right">
-      <div class="user-select"><span>Rene Buttercoconut</span> <i class="fa-solid fa-chevron-down"></i></div>
-      <div class="profile-circle"></div>
-    </div>
   </header>
 
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="page-title-bar">
-        <div class="title-with-icon">
-          <i class="fa-solid fa-paw header-paw"></i>
-          <h2>Rescue Cases</h2>
-        </div>
+  <!-- MAIN CONTENT (Same as your original) -->
+  <div class="max-w-screen-xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+    <main class="min-w-0">
+      <div class="flex items-center gap-3 mb-5">
+        <i class="fa-solid fa-paw text-2xl text-brown"></i>
+        <h2 class="text-xl font-extrabold">Rescue Cases</h2>
       </div>
-
-      <div class="list-container-card">
-        <!-- TOP TOOLBAR -->
-        <div class="filter-toolbar">
-          <div class="search-input-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="caseSearchInput" placeholder="Search by animal, location, or description..." onkeyup="filterRescueCases()" />
+      <div class="bg-cream-card border border-bdr rounded-xl p-4">
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+            <input id="caseSearchInput" type="text" placeholder="Search by animal, location, or description..." class="w-full pl-9 pr-4 py-2 rounded-full border border-bdr bg-cream text-sm outline-none" onkeyup="filterRescueCases()" />
           </div>
-
-          <div class="sort-wrapper">
-            <label>Sort by:</label>
-            <div class="select-box">
-              <select id="sortBySelect" onchange="filterRescueCases()">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="urgent">Most Urgent</option>
-              </select>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
+          <div class="flex items-center gap-2 text-sm font-semibold shrink-0">
+            <label class="text-brown-dark">Sort by:</label>
+            <select id="sortBySelect" onchange="filterRescueCases()" class="border border-bdr rounded-lg px-3 py-2 bg-cream text-brown-dark text-sm outline-none">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="urgent">Most Urgent</option>
+            </select>
           </div>
         </div>
-
-        <!-- CATEGORY PILLS -->
-        <div class="pill-bar">
-          <button class="pill-btn active" onclick="filterCategory('all', this)">All Cases</button>
-          <button class="pill-btn" onclick="filterCategory('urgent', this)"><i class="fa-regular fa-clock"></i> Urgent</button>
-          <button class="pill-btn" onclick="filterCategory('progress', this)"><i class="fa-regular fa-compass"></i> In progress</button>
-          <button class="pill-btn" onclick="filterCategory('cat', this)"><i class="fa-solid fa-cat"></i> Cat</button>
-          <button class="pill-btn" onclick="filterCategory('dog', this)"><i class="fa-solid fa-dog"></i> Dog</button>
+        <div class="flex gap-2 overflow-x-auto pill-scroll pb-1 mb-4">
+          <button class="pill-cat active-pill-cat shrink-0 border border-peach px-4 py-1.5 rounded-full text-xs font-bold text-brown-dark" onclick="filterCategory('all',this)">All Cases</button>
+          <button class="pill-cat shrink-0 border border-peach px-4 py-1.5 rounded-full text-xs font-bold text-brown-dark" onclick="filterCategory('urgent',this)"><i class="fa-regular fa-clock mr-1"></i>Urgent</button>
+          <button class="pill-cat shrink-0 border border-peach px-4 py-1.5 rounded-full text-xs font-bold text-brown-dark" onclick="filterCategory('progress',this)"><i class="fa-regular fa-compass mr-1"></i>In progress</button>
+          <button class="pill-cat shrink-0 border border-peach px-4 py-1.5 rounded-full text-xs font-bold text-brown-dark" onclick="filterCategory('cat',this)"><i class="fa-solid fa-cat mr-1"></i>Cat</button>
+          <button class="pill-cat shrink-0 border border-peach px-4 py-1.5 rounded-full text-xs font-bold text-brown-dark" onclick="filterCategory('dog',this)"><i class="fa-solid fa-dog mr-1"></i>Dog</button>
         </div>
-
-        <!-- CASES LIST -->
-        <div class="cases-vertical-list" id="casesList">
-          
-          <!-- Item 1 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
+        <div class="flex flex-col gap-3" id="casesList">
+            <div class="case-list-item border border-bdr rounded-xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4 bg-cream" data-category="dog urgent" data-date="2026-10-24T10:23:00" data-urgency="urgent">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 shrink-0 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-2xl sm:text-3xl text-gray-400"><i class="fa-solid fa-dog"></i></div>
+              <div class="flex-1 min-w-0">
+                <span class="block font-extrabold text-sm mb-1">RP-001</span>
+                <div class="flex flex-wrap gap-x-4 gap-y-0.5 text-xs text-gray-500">
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-paw w-3"></i>Dog <span class="text-gray-400">Injured</span></span>
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot w-3"></i>Quezon City <span class="text-gray-400">San Bartolome</span></span>
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-calendar-days w-3"></i>Oct. 24 <span class="text-gray-400">10:23 AM</span></span>
+                </div>
               </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
+              <div class="flex flex-col items-end gap-2 shrink-0">
+                <div class="flex gap-1">
+                  <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-0.5 rounded-full">Dog</span>
+                  <span class="bg-rose-200 text-rose-900 text-xs font-bold px-2 py-0.5 rounded-full">Urgent</span>
+                </div>
+                <a href="case-overview.html" class="flex items-center gap-1 bg-coral text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap">View Details <i class="fa-solid fa-chevron-right text-xs"></i></a>
               </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
             </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
-              </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
-
+            <!-- Add more items as needed -->
         </div>
       </div>
     </main>
-
-    <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
-      <div class="sidebar-callout">
-        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
-        <p>Check the <u>map</u> first. If the stray is already pinned, you can follow that case instead of sending a duplicate report.</p>
-        <button class="btn btn-brown btn-block">Check the Map <i class="fa-solid fa-chevron-right"></i></button>
+    <aside class="flex flex-col gap-4">
+      <div class="bg-cream-card border border-bdr rounded-xl px-4 py-3 flex justify-between items-center font-extrabold text-sm">
+        <span>Notification</span><i class="fa-solid fa-bell text-brown"></i>
       </div>
-      <div class="sidebar-card sidebar-map-card">
-        <div class="mini-map-header"><span>Nearby Clinic/Shelters</span></div>
-        <div class="mini-map-box"><i class="fa-solid fa-map-location-dot mini-map-icon"></i></div>
-        <div class="mini-map-footer"><a href="#">View Map <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="bg-peach rounded-xl p-4 text-brown-dark">
+        <div class="flex justify-between items-center font-extrabold mb-2 text-sm">
+          <span>Before you report</span><i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <p class="text-xs leading-relaxed mb-1">Check the map first to prevent duplicate entries for the same stray animal.</p>
+        <a href="map.html" class="mt-3 flex items-center justify-center gap-2 w-full bg-brown text-white font-bold py-2 rounded-lg text-sm">Check the Map <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+      <div class="bg-cream-card border border-bdr rounded-xl p-3 cursor-pointer" onclick="window.location.href='map.html'">
+        <p class="font-bold text-xs mb-2">Nearby Shelters</p>
+        <div class="h-32 bg-[#E0DDD0] rounded-lg flex items-center justify-center text-4xl text-gray-400"><i class="fa-solid fa-map-location-dot"></i></div>
+        <a href="map.html" class="text-coral text-xs font-bold mt-2 flex items-center gap-1">View Map <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </aside>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
