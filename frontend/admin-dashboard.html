@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PAWTECT | Admin Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared PawTect CSS -->
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+</head>
+
+
+<body class="admin-page">
+<div class="app">
+  <aside class="sidebar">
+    <div class="profile"><div class="avatar"></div><div><strong id="adminName">Administrator</strong><small id="adminRole">Admin</small></div></div>
+    <nav class="nav" aria-label="Main navigation">
+
+    <!-- Dashboard -->
+    <button class="active" data-page="dashboard">
+        <span class="nav-icon">⌂</span>
+        Dashboard
+    </button>
+
+    <!-- Account Management Dropdown -->
+    <button
+        class="account-toggle"
+        id="accountToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="accountSubmenu"
+    >
+        <span class="nav-icon">♙</span>
+        <span class="nav-label">Account Management</span>
+        <span class="dropdown-arrow">⌄</span>
+    </button>
+
+    <!-- Dropdown Options -->
+    <div class="account-submenu" id="accountSubmenu">
+
+        <button class="subnav" data-page="users">
+            <span class="nav-icon">♧</span>
+            User Management
+        </button>
+
+        <button class="subnav" data-page="staff">
+            <span class="nav-icon">♟</span>
+            Staff Management
+        </button>
+
+    </div>
+
+    <!-- Reports -->
+    <button data-page="reports">
+        <span class="nav-icon">▤</span>
+        Reports
+    </button>
+
+</nav>
+    <div class="sidebar-bottom"><button>⚙ Settings</button><button>ⓘ Help</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><span id="topTitle">Home</span><div class="top-user"><span id="adminTopName">Administrator</span><div class="avatar"></div><span>⌄</span></div></header>
+    <section class="content">
+      <section id="dashboard" class="page">
+        <div class="welcome">Welcome back, <span id="adminFirstName">Admin!</span></div>
+        <div class="quick-stats">
+          <div class="quick"><div class="stat-icon peach">⚑</div><div><small>Flag Reports</small><strong id="flagReportTotal">0</strong><em>Escalated reports needing review</em></div></div>
+          <div class="quick"><div class="stat-icon peach">⚠</div><div><small>Urgent Cases</small><strong id="urgentReportTotal">0</strong><em>Needs attention</em></div></div>
+          <div class="quick"><div class="stat-icon green">♧</div><div><small>Rescued Animals</small><strong id="rescuedAnimalTotal">0</strong><em>Successfully rescued</em></div></div>
+        </div>
+        <div class="alert"><span>Review urgent and escalated reports that may need administrator attention.</span><button class="primary" data-go="reports">Review reports ›</button></div>
+        <div class="dashboard-grid">
+          <div class="chart-card"><h3>Report Overview</h3>
+            <div id="reportOverviewSummary" class="report-overview-summary">
+              <p>Loading report statistics...</p>
+            </div>
+          </div>
+          <div class="recent">
+            <h3>Recent Reports</h3>
+            <div id="recentReports"><p>Loading recent reports...</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="users" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">♟</div><div><h1>User Management</h1><p>Manage and monitor registered users of the system</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">♟</span>Total Users</div><strong id="userTotal">0</strong><div class="trend">Current duty status</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon green">●</span>Active Users</div><strong id="userActive">0</strong><div class="trend">Current account status</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon blue">♟</span>New This Month</div><strong id="userNewMonth">0</strong><div class="trend">Current account status</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon red">⊘</span>Suspended Users</div><strong id="userSuspended">0</strong><div class="trend down">Current account status</div></div>
+        </div>
+        <div class="panel">
+          <div class="toolbar"><div class="search"><input id="userSearch" placeholder="Search by name, email, or user ID..."></div><select id="userStatus"><option value="">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="suspended">Suspended</option><option value="disabled">Disabled</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>User ID</th><th>Full Name</th><th>Email</th><th>Contact Number</th><th>Status</th><th>Actions</th></tr></thead><tbody id="userRows"></tbody></table></div>
+          <div class="pagination"><span id="userCount">Showing 0 users</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>›</button></div></div>
+        </div>
+      </section>
+
+      <section id="staff" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">♟</div><div><h1>Staff Management</h1><p>Manage and monitor personnel of the system</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">♟</span>Total Staff</div><strong id="staffTotal">0</strong><div class="trend">Registered rescuers</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon green">●</span>Available</div><strong id="staffAvailable">0</strong><div class="trend">Current duty status</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon blue">♟</span>On Rescue Duty</div><strong id="staffOnDuty">0</strong><div class="trend">Active rescue cases</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon gray">◉</span>Not Available</div><strong id="staffOffDuty">0</strong><div class="trend down">Pending, suspended, or disabled</div></div>
+        </div>
+        <div class="panel">
+          <div class="toolbar"><div class="search"><input id="staffSearch" placeholder="Search by name, email, or user ID..."></div><select id="staffStatus"><option value="">All Status</option><option value="Available">Available</option><option value="On Duty">On Duty</option><option value="Pending">Pending</option><option value="Suspended">Suspended</option><option value="Disabled">Disabled</option></select><button class="primary" id="addStaff">+ Add Staff</button></div>
+          <div class="table-wrap"><table><thead><tr><th>User ID</th><th>Full Name</th><th>Email</th><th>Contact Number</th><th>Status</th><th>Actions</th></tr></thead><tbody id="staffRows"></tbody></table></div>
+          <div class="pagination"><span id="staffCount">Showing 0 staff</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>›</button></div></div>
+        </div>
+      </section>
+
+      <section id="reports" class="page hidden">
+        <div class="page-heading"><div class="heading-left"><div class="heading-icon">▤</div><div><h1>Report Management</h1><p>Review and manage submitted animal rescue reports</p></div></div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">☷</span>Total Reports</div><strong id="reportTotal">0</strong><div class="trend">All submitted reports</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">◷</span>Pending</div><strong id="reportPending">0</strong><div class="trend">Awaiting rescue assignment</div></div>
+          <div class="stat"><div class="stat-top"><span class="stat-icon peach">⚠</span>Urgent</div><strong id="reportUrgent">0</strong><div class="trend down">Urgent active reports</div></div>
+        </div>
+        <div class="panel">
+          <div class="filter-layout">
+            <div><div class="toolbar"><div class="search"><input id="reportSearch" placeholder="Search by report ID, location, keyword..."></div><select id="reportStatus"><option value="">All Status</option><option value="reported">Pending</option><option value="accepted">Accepted</option><option value="en_route">En Route</option><option value="arrived">Arrived</option><option value="rescued">Rescued</option><option value="brought_to_vet">Brought to Vet</option><option value="brought_to_shelter">Brought to Shelter</option><option value="rejected">Rejected</option></select><select id="reportDateRange"><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="all">All time</option></select></div>
+              <div class="table-wrap"><table><thead><tr><th> </th><th>Report ID</th><th>Photo</th><th>Animal Type</th><th>Location</th><th>Date & Time</th><th>Status</th><th>Priority</th><th>Actions</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+              <div class="pagination"><span>Showing 0 reports</span><div class="pages"><button>‹</button><button class="current">1</button><button>2</button><button>»</button></div></div>
+            </div>
+            <aside class="filter-box"><h3>⚲ Quick Filters</h3><b>Status</b><label><input type="checkbox" data-report-status-filter="reported"> Pending</label><label><input type="checkbox" data-report-status-filter="in_progress"> In Progress</label><label><input type="checkbox" data-report-status-filter="resolved"> Resolved</label><hr style="border:0;border-top:1px solid #eee;margin:10px 0"><b>Priority</b><label><input type="checkbox" data-report-urgency-filter="urgent"> Urgent</label><label><input type="checkbox" data-report-urgency-filter="medium"> Normal</label><label><input type="checkbox" data-report-urgency-filter="low"> Low</label><button class="clear" id="clearFilters">Clear Filters</button></aside>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="staffModal">
+  <div class="modal">
+    <h2>Add Staff Member</h2>
+    <form id="staffForm">
+      <div class="form-row"><label for="newName">Full Name</label><input id="newName" required placeholder="Enter full name"></div>
+      <div class="form-row"><label for="newEmail">Email</label><input id="newEmail" type="email" required placeholder="name@example.com"></div>
+      <div class="form-row"><label for="newPhone">Contact Number</label><input id="newPhone" required placeholder="09XX XXX XXXX"></div>
+      <div class="form-row"><label for="newPassword">Temporary Password</label><input id="newPassword" type="password" minlength="8" required placeholder="At least 8 characters"></div>
+      <div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button class="primary" type="submit">Add Staff</button></div>
+    </form>
+  </div>
+</div>
+<script src="script.js" defer></script>
+</body>
+</html>
