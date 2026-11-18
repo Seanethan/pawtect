@@ -8,6 +8,7 @@ USE pawtect_db;
 
 
 
+
 CREATE TABLE IF NOT EXISTS users (
   user_id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
@@ -164,8 +165,24 @@ CREATE TABLE IF NOT EXISTS report_escalations (
 ) ENGINE=InnoDB;
 
 
+CREATE TABLE IF NOT EXISTS report_photos (
+  photo_id INT AUTO_INCREMENT PRIMARY KEY,
+  report_id INT NOT NULL,
+  photo_url VARCHAR(500) NOT NULL,
+  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_report_photo
+    FOREIGN KEY (report_id)
+    REFERENCES stray_reports(report_id)
+    ON DELETE CASCADE,
+
+  INDEX idx_report_photo (report_id)
+) ENGINE=InnoDB;
 
 
+ALTER TABLE users
+ADD COLUMN location VARCHAR(255) NULL,
+ADD COLUMN profile_note TEXT NULL;
 
 
 

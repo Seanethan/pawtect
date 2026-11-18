@@ -2,91 +2,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect | Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <title>PawTect | Register</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="register.css">
+
+    <link rel="icon" href="data:,">
 </head>
 
-<body>
+<body class="auth-page register-page">
 
-  <nav class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
-    </div>
-  </nav>
+    <main class="register-container">
 
-  <main class="auth-wrap">
-
-    <section class="auth-card">
-
-      <h2>
-        <i class="fa-solid fa-user-plus"></i>
-        Create reporter account
-      </h2>
-
-      <form onsubmit="handleRegister(event)">
-
-        <div class="form-group">
-          <label>First name</label>
-          <input name="firstName" required>
+        <!-- PawTect Logo -->
+        <div class="register-logo">
+            <img src="assets/logo-removebg-preview.png" alt="PawTect Logo">
         </div>
 
-        <div class="form-group">
-          <label>Last name</label>
-          <input name="lastName" required>
-        </div>
+        <!-- Registration Card -->
+        <section class="register-card">
 
-        <div class="form-group">
-          <label>Username (optional)</label>
-          <input name="username">
-        </div>
+            <!-- Heading -->
+            <div class="register-heading">
+                <h1>Create account</h1>
+                <p>Join Pawtect and help strays in your community</p>
+            </div>
 
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" required autocomplete="email">
-        </div>
+            <!-- Google Sign Up -->
+            <button type="button" class="register-google-btn">
+                <i class="fa-brands fa-google"></i>
+                <span>Continue with Google</span>
+            </button>
 
-        <div class="form-group">
-          <label>Contact number</label>
-          <input name="contactNumber">
-        </div>
+            <!-- Divider -->
+            <div class="register-divider">
+                <span></span>
+                <p>or</p>
+                <span></span>
+            </div>
 
-        <div class="form-group">
-          <label>Birthday</label>
-          <input type="date" name="birthday">
-        </div>
+            <!-- Registration Form -->
+            <form id="registerForm" onsubmit="validateRegistration(event)">
 
-        <div class="form-group">
-          <label>Password (minimum 8 characters)</label>
-          <input type="password" name="password" minlength="8" required autocomplete="new-password">
-        </div>
+                <!-- First Name and Last Name -->
+                <div class="register-form-row">
 
-        <button class="btn btn-peach btn-block" type="submit">
-          Create account
-        </button>
+                    <div class="register-form-group">
+                        <label for="firstName">FIRST NAME</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Juan"
+                            required
+                            autocomplete="given-name"
+                        >
+                    </div>
 
-      </form>
+                    <div class="register-form-group">
+                        <label for="lastName">LAST NAME</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="dela Cruz"
+                            required
+                            autocomplete="family-name"
+                        >
+                    </div>
 
-      <div class="login-link">
-        Already have an account?
-        <br>
-        <a href="login.html">
-          <i class="fa-solid fa-right-to-bracket"></i> Log in
-        </a>
-      </div>
+                </div>
 
-    </section>
+                
 
-    <p id="authMessage" class="auth-message" aria-live="polite"></p>
+                <!-- Email -->
+                <div class="register-form-group">
+                    <label for="email">EMAIL</label>
 
-  </main>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@email.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
 
-  <script src="script.js"></script>
+                
+
+                <!-- Password -->
+                <div class="register-form-group">
+                    <label for="password">PASSWORD</label>
+
+                    <div class="register-password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Min. 8 characters"
+                            minlength="8"
+                            required
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="register-password-toggle"
+                            data-target="password"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="register-form-group">
+                    <label for="confirmPassword">CONFIRM PASSWORD</label>
+
+                    <div class="register-password-wrapper">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Repeat password"
+                            minlength="8"
+                            required
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="register-password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Become a Rescuer -->
+                <label class="rescuer-option" for="becomeRescuer">
+
+                    <div class="rescuer-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+
+                    <div class="rescuer-details">
+                        <strong>Become a Rescuer</strong>
+                        <span>Get notified of strays and help with rescues</span>
+                    </div>
+
+                    <div class="rescuer-switch">
+                        <input
+                            type="checkbox"
+                            id="becomeRescuer"
+                            name="becomeRescuer"
+                            value="true"
+                        >
+                        <span class="switch-slider"></span>
+                    </div>
+
+                </label>
+
+                <!-- Create Account -->
+                <button type="submit" class="register-submit-btn">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Create Account
+                </button>
+
+            </form>
+
+            <!-- Login Link -->
+            <div class="register-login-link">
+                Already have an account?
+                <a href="index.html">Sign In</a>
+            </div>
+
+        </section>
+
+        <!-- Registration Message -->
+        <p id="authMessage" class="register-message" aria-live="polite"></p>
+
+    </main>
+
+    <!-- Existing Backend Script -->
+    <script src="script.js"></script>
+
+    <!-- Page Interactions -->
+    <script>
+
+        // Password visibility toggles
+        document.querySelectorAll(".register-password-toggle").forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                const input = document.getElementById(this.dataset.target);
+
+                const isPassword = input.type === "password";
+
+                input.type = isPassword ? "text" : "password";
+
+                this.innerHTML = isPassword
+                    ? '<i class="fa-solid fa-eye-slash"></i>'
+                    : '<i class="fa-solid fa-eye"></i>';
+
+                this.setAttribute(
+                    "aria-label",
+                    isPassword ? "Hide password" : "Show password"
+                );
+
+            });
+
+        });
+
+
+        // Registration validation
+        function validateRegistration(event) {
+
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const message = document.getElementById("authMessage");
+
+            message.textContent = "";
+
+            if (password !== confirmPassword) {
+
+                message.textContent = "Passwords do not match.";
+                message.style.color = "#c0392b";
+
+                document.getElementById("confirmPassword").focus();
+
+                return;
+            }
+
+            if (typeof handleRegister === "function") {
+
+                handleRegister(event);
+
+            } else {
+
+                message.textContent = "Registration function not found.";
+                message.style.color = "#c0392b";
+
+            }
+
+        }
+
+    </script>
 
 </body>
 </html>

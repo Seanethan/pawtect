@@ -8,10 +8,11 @@ Start the backend from the `pawtect-backend` folder with `npm install` then `npm
 
 
 
+
+
 ```
 pawtect
 ├─ backend
-│  ├─ .env
 │  ├─ database
 │  │  └─ schema.sql
 │  ├─ package-lock.json
@@ -26,17 +27,22 @@ pawtect
 │     │  ├─ admin.js
 │     │  ├─ auth.js
 │     │  ├─ cases.js
+│     │  ├─ notifications.js
 │     │  └─ reports.js
 │     └─ server.js
 ├─ frontend
 │  ├─ admin-dashboard.css
 │  ├─ admin-dashboard.html
-│  ├─ auth.html
+│  ├─ assets
+│  │  └─ logo-removebg-preview.png
+│  ├─ auth.css
 │  ├─ case-details.html
 │  ├─ case-overview.html
 │  ├─ index.html
+│  ├─ landing-page.html
 │  ├─ map.html
 │  ├─ profile.html
+│  ├─ register.css
 │  ├─ register.html
 │  ├─ report.html
 │  ├─ rescue-cases.html

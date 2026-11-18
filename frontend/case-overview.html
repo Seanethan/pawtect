@@ -4,146 +4,267 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PawTect - Case Overview</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
+<body>
   <header class="navbar">
     <div class="nav-left">
       <div class="logo-circle"></div>
       <span class="logo-text">PawTect</span>
     </div>
+
     <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <a href="map.html" class="nav-btn">
+        <i class="fa-solid fa-map-location-dot"></i> Map
+      </a>
+      <a href="rescue-cases.html" class="nav-btn active">
+        <i class="fa-solid fa-list-check"></i> Rescue Cases
+      </a>
+      <a href="submit-report.html" class="nav-btn">
+        <i class="fa-solid fa-bullhorn"></i> Report
+      </a>
+      <a href="profile.html" class="nav-btn">
+        <i class="fa-solid fa-user"></i> Profile
+      </a>
     </nav>
+
     <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle"></div>
+      <div class="user-dropdown-container">
+        <button
+          type="button"
+          class="user-select"
+          id="userDropdownToggle"
+          aria-expanded="false"
+          aria-controls="userDropdown"
+        >
+          <span>My Account</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="profile.html">
+            <i class="fa-solid fa-user"></i> My Profile
+          </a>
+          <button type="button" id="userLogout">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
+        </div>
+      </div>
+
+      <a href="profile.html" class="profile-circle" aria-label="My profile"></a>
     </div>
   </header>
 
   <div class="main-layout">
     <main class="content-area">
+
       <div class="page-title-bar">
         <div class="title-with-icon">
           <i class="fa-solid fa-paw header-paw"></i>
-          <h2>Rescue Cases</h2>
+          <h2>Case Overview</h2>
         </div>
       </div>
 
-      <!-- Overview Header Card -->
+      <!-- Case Overview Header -->
       <div class="overview-main-card">
-        <div class="overview-thumb-box"><i class="fa-regular fa-image"></i></div>
+        <div class="overview-thumb-box" id="overviewImageBox">
+          <i class="fa-regular fa-image"></i>
+        </div>
+
         <div class="overview-meta-body">
           <div class="overview-header-line">
-            <h3>Rescue Case #001</h3>
-            <span class="tag tag-reported">Pending</span>
-            <span class="badge badge-rose">Urgent</span>
-            <button class="btn btn-coral" style="margin-left:auto;" onclick="alert('Request canceled.')">Cancel Request</button>
+            <h3 id="overviewCaseTitle">Loading case...</h3>
+
+            <span class="tag tag-reported" id="overviewStatus">
+              Loading
+            </span>
+
+            <span class="badge badge-rose" id="overviewUrgency">
+              --
+            </span>
           </div>
-          <p class="sub-category">For Adoption</p>
-          <div class="location-line"><i class="fa-solid fa-location-dot"></i> Quezon City, San Bartolome</div>
-          <div class="time-line"><i class="fa-solid fa-calendar-days"></i> Reported on Oct. 23, 2026 - 10:30 AM</div>
+
+          <p class="sub-category" id="overviewAnimalType">Animal details</p>
+
+          <div class="location-line" id="overviewLocation">
+            <i class="fa-solid fa-location-dot"></i>
+            Loading location...
+          </div>
+
+          <div class="time-line" id="overviewDate">
+            <i class="fa-solid fa-calendar-days"></i>
+            Loading report date...
+          </div>
         </div>
       </div>
 
-      <!-- Case Status Update Tracker -->
-      <!-- <div class="progress-card" style="margin-bottom: 20px;">
-        <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:16px;"><i class="fa-solid fa-compass"></i> Case Status Update</h3>
-        <div class="timeline-stepper">
-          <div class="step completed">
+      <!-- Status Tracker -->
+      <div class="progress-card case-progress-card">
+        <h3 class="case-section-heading">
+          <i class="fa-solid fa-compass"></i>
+          Case Status Update
+        </h3>
+
+        <div class="status-progress-bar">
+          <div class="status-progress-fill" id="caseProgressFill"></div>
+        </div>
+
+        <div class="timeline-stepper" id="caseTimeline">
+          <div class="step">
             <div class="step-node">1</div>
-            <span class="step-title">Report Pending</span>
+            <span class="step-title">Report Submitted</span>
           </div>
+
           <div class="step">
             <div class="step-node">2</div>
-            <span class="step-title">En route</span>
+            <span class="step-title">Accepted</span>
           </div>
+
           <div class="step">
             <div class="step-node">3</div>
-            <span class="step-title">Arrived at the Location</span>
+            <span class="step-title">En Route</span>
           </div>
+
           <div class="step">
             <div class="step-node">4</div>
-            <span class="step-title">Rescue Outcome Submitted</span>
+            <span class="step-title">Arrived</span>
           </div>
+
           <div class="step">
             <div class="step-node">5</div>
-            <span class="step-title">Report Finish</span>
+            <span class="step-title">Rescue Completed</span>
           </div>
         </div>
-      </div> -->
 
-      <!-- Case Status Update Tracker -->
-<div class="progress-card" style="margin-bottom: 20px;">
-  <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:20px;">
-    <i class="fa-solid fa-compass"></i> Case Status Update
-  </h3>
+        <p id="caseProgressMessage" class="case-progress-message">
+          Loading case progress...
+        </p>
+      </div>
 
-  <!-- Progress Bar -->
-  <div class="status-progress-bar">
-    <div class="status-progress-fill" style="width: 0%;"></div>
-  </div>
+      <!-- Rescuer/Admin Controls -->
+      <div class="case-action-card" id="rescuerCaseControls" style="display:none;">
+        <div>
+          <h3><i class="fa-solid fa-clipboard-check"></i> Update Rescue Case</h3>
+          <p>Update the progress of this rescue operation.</p>
+        </div>
 
-  <!-- Timeline Steps -->
-  <div class="timeline-stepper">
-    <div class="step completed">
-      <div class="step-node">1</div>
-      <span class="step-title">Report Pending</span>
-    </div>
+        <div class="case-action-controls">
+          <select id="caseStatusSelect">
+            <option value="en_route">En Route</option>
+            <option value="arrived">Arrived at Location</option>
+            <option value="completed">Rescue Completed</option>
+            <option value="not_found">Animal Not Found</option>
+            <option value="cancelled">Cancel Rescue Case</option>
+          </select>
 
-    <div class="step">
-      <div class="step-node">2</div>
-      <span class="step-title">En route</span>
-    </div>
+          <button type="button" class="btn btn-coral" id="updateCaseStatusBtn">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Update Status
+          </button>
+        </div>
+      </div>
 
-    <div class="step">
-      <div class="step-node">3</div>
-      <span class="step-title">Arrived at the Location</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">4</div>
-      <span class="step-title">Rescue Outcome Submitted</span>
-    </div>
-
-    <div class="step">
-      <div class="step-node">5</div>
-      <span class="step-title">Report Finish</span>
-    </div>
-  </div>
-</div>
-
-      <!-- Detailed Specifications Card -->
+      <!-- Case Details -->
       <div class="overview-details-card">
-        <div class="card-section-title"><i class="fa-solid fa-paw"></i><h3>Case Details</h3></div>
+        <div class="card-section-title">
+          <i class="fa-solid fa-paw"></i>
+          <h3>Case Details</h3>
+        </div>
+
         <div class="two-column-details">
           <div class="detail-column">
-            <div class="detail-row"><strong>Animal Type:</strong> <br>Cat</div>
-            <div class="detail-row"><strong>Breed:</strong> <br>--</div>
-            <div class="detail-row"><strong>Size:</strong> <br>--</div>
-            <div class="detail-row"><strong>Color:</strong> <br>--</div>
-            <div class="detail-row"><strong>Condition:</strong> <br>Injured (left front leg, unable to walk)</div>
+            <div class="detail-row">
+              <strong>Animal Type:</strong>
+              <span id="detailAnimalType">--</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Breed:</strong>
+              <span id="detailBreed">Not provided</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Size:</strong>
+              <span id="detailSize">Not provided</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Color:</strong>
+              <span id="detailColor">Not provided</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Condition:</strong>
+              <span id="detailCondition">--</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Urgency:</strong>
+              <span id="detailUrgency">--</span>
+            </div>
           </div>
+
           <div class="column-divider"></div>
+
           <div class="detail-column">
-            <div class="detail-row"><strong>Location Found:</strong> <br>Quezon City -- Commonwealth</div>
-            <div class="detail-row"><strong>Date Reported:</strong> <br>Oct. 24, 2080 -- 8:30 PM</div>
-            <div class="detail-row"><strong>Reported By:</strong> <br>Rene Bombaclat</div>
-            <div class="detail-row"><strong>Description:</strong> <br>Teach me how to doggie, tteach me how to doggie, Turuan moko nyan ttutuan moko nyan</div>
+            <div class="detail-row">
+              <strong>Location Found:</strong>
+              <span id="detailLocation">--</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Date Reported:</strong>
+              <span id="detailDate">--</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Reported By:</strong>
+              <span id="detailReporter">--</span>
+            </div>
+
+            <div class="detail-row">
+              <strong>Description:</strong>
+              <span id="detailDescription">--</span>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Status History -->
+      <div class="case-history-card">
+        <div class="card-section-title">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Case History</h3>
+        </div>
+
+        <div id="caseHistoryList" class="case-history-list">
+          <p class="case-history-empty">Loading case history...</p>
+        </div>
+      </div>
+
     </main>
 
     <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+      <div class="sidebar-card">
+        <div class="sidebar-header">
+          <span>
+            Notifications
+            <span id="notificationCount" class="notification-count hidden">0</span>
+          </span>
+          <i class="fa-solid fa-bell bell-icon"></i>
+        </div>
+
+        <div id="notificationList" class="notification-list">
+          <div class="notification-empty">Loading notifications...</div>
+        </div>
+      </div>
     </aside>
   </div>
 

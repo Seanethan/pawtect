@@ -4,89 +4,194 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PawTect - Case Progress Details</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
+<body>
   <header class="navbar">
     <div class="nav-left">
       <div class="logo-circle"></div>
       <span class="logo-text">PawTect</span>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <!-- -->
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
-    </nav>
-    <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle"></div>
-    </div>
-  </header>
 
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="page-title-bar">
-        <div class="title-with-icon">
-          <i class="fa-solid fa-timeline header-paw"></i>
-          <h2>Case Progress Tracker (#6969)</h2>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <a href="map.html" class="nav-btn">
+        <i class="fa-solid fa-map-location-dot"></i> Map
+      </a>
+      <a href="rescue-cases.html" class="nav-btn active">
+        <i class="fa-solid fa-list-check"></i> Rescue Cases
+      </a>
+      <a href="submit-report.html" class="nav-btn">
+        <i class="fa-solid fa-bullhorn"></i> Report
+      </a>
+      <a href="profile.html" class="nav-btn">
+        <i class="fa-solid fa-user"></i> Profile
+      </a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="user-dropdown-container">
+        <button
+          type="button"
+          class="user-select"
+          id="userDropdownToggle"
+          aria-expanded="false"
+          aria-controls="userDropdown"
+        >
+          <span>My Account</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="profile.html">
+            <i class="fa-solid fa-user"></i> My Profile
+          </a>
+          <button type="button" id="userLogout">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
         </div>
       </div>
 
+      <a href="profile.html" class="profile-circle" aria-label="My profile"></a>
+    </div>
+  </header>
+
+  <div class="main-layout" id="caseProgressDetailsPage">
+    <main class="content-area">
+
+      <div class="page-title-bar">
+        <div class="title-with-icon">
+          <i class="fa-solid fa-timeline header-paw"></i>
+          <h2>Case Progress Tracker</h2>
+        </div>
+      </div>
+
+      <!-- Case Summary -->
       <div class="case-detail-row">
+
         <div class="case-meta-card">
-          <div class="card-thumb"><i class="fa-solid fa-dog"></i></div>
+          <div class="card-thumb" id="progressCaseImage">
+            <i class="fa-solid fa-paw"></i>
+          </div>
+
           <div class="card-meta-content">
             <div class="card-head-line">
-              <h4>Case #6969</h4>
-              <span class="tag tag-assigned">Assigned</span>
+              <h4 id="progressCaseNumber">Loading case...</h4>
+              <span class="tag tag-reported" id="progressCaseStatus">Loading</span>
             </div>
+
             <ul class="meta-info-list">
-              <li><i class="fa-solid fa-scroll"></i> Stray Report</li>
-              <li><i class="fa-solid fa-location-dot"></i> Holycross Market, San Bartolome</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026</li>
-              <li><i class="fa-solid fa-tag"></i> Injured</li>
+              <li>
+                <i class="fa-solid fa-scroll"></i>
+                <span id="progressReportType">Stray Animal Report</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="progressLocation">Loading location...</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-calendar-days"></i>
+                <span id="progressDate">Loading date...</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-tag"></i>
+                <span id="progressCondition">Loading condition...</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span id="progressUrgency">Loading urgency...</span>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div class="progress-card">
-          <h3>Progress Timeline</h3>
-          <p class="stage-subtitle">Stage 3 of 5: Rescue Assigned</p>
+        <!-- Progress Timeline -->
+        <div class="progress-card case-detail-progress-card">
+          <h3>
+            <i class="fa-solid fa-route"></i>
+            Progress Timeline
+          </h3>
 
-          <div class="timeline-stepper">
-            <div class="step completed">
-              <div class="step-node"><i class="fa-solid fa-check"></i></div>
+          <p class="stage-subtitle" id="progressStageSubtitle">
+            Loading current stage...
+          </p>
+
+          <div class="status-progress-bar">
+            <div class="status-progress-fill" id="progressTrackerFill"></div>
+          </div>
+
+          <div class="timeline-stepper" id="progressTrackerSteps">
+            <div class="step">
+              <div class="step-node">1</div>
               <span class="step-title">Reported</span>
             </div>
-            <div class="step completed">
-              <div class="step-node"><i class="fa-solid fa-check"></i></div>
+
+            <div class="step">
+              <div class="step-node">2</div>
               <span class="step-title">Accepted</span>
             </div>
-            <div class="step active">
+
+            <div class="step">
               <div class="step-node">3</div>
-              <span class="step-title">Assigned</span>
+              <span class="step-title">En Route</span>
             </div>
+
             <div class="step">
               <div class="step-node">4</div>
-              <span class="step-title">Rescued</span>
+              <span class="step-title">Arrived</span>
             </div>
+
             <div class="step">
               <div class="step-node">5</div>
-              <span class="step-title">Intake</span>
+              <span class="step-title">Completed</span>
             </div>
           </div>
+
+          <p class="case-detail-status-message" id="progressStatusMessage">
+            Loading case progress...
+          </p>
         </div>
       </div>
+
+      <!-- Case History -->
+      <div class="case-history-card">
+        <div class="card-section-title">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Progress History</h3>
+        </div>
+
+        <div id="progressHistoryList" class="case-history-list">
+          <p class="case-history-empty">Loading progress history...</p>
+        </div>
+      </div>
+
+      <a href="rescue-cases.html" class="case-back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Rescue Cases
+      </a>
+
     </main>
 
     <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+      <div class="sidebar-card">
+        <div class="sidebar-header">
+          <span>
+            Notifications
+            <span id="notificationCount" class="notification-count hidden">0</span>
+          </span>
+          <i class="fa-solid fa-bell bell-icon"></i>
+        </div>
+
+        <div id="notificationList" class="notification-list">
+          <div class="notification-empty">Loading notifications...</div>
+        </div>
+      </div>
     </aside>
   </div>
 

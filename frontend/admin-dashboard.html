@@ -72,7 +72,33 @@
     <div class="sidebar-bottom"><button>⚙ Settings</button><button>ⓘ Help</button></div>
   </aside>
   <main class="main">
-    <header class="topbar"><span id="topTitle">Home</span><div class="top-user"><span id="adminTopName">Administrator</span><div class="avatar"></div><span>⌄</span></div></header>
+<header class="topbar">
+    <span id="topTitle">Home</span>
+
+    <div class="top-user">
+        <span id="adminTopName">Administrator</span>
+        <div class="avatar"></div>
+
+        <div class="admin-dropdown-container">
+            <button
+                type="button"
+                class="admin-dropdown-toggle"
+                id="adminDropdownToggle"
+                aria-expanded="false"
+                aria-controls="adminDropdown"
+                aria-label="Open admin menu"
+            >
+                ⌄
+            </button>
+
+            <div class="admin-dropdown" id="adminDropdown">
+                <button type="button" id="adminLogout">
+                    <span>↪</span> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
     <section class="content">
       <section id="dashboard" class="page">
         <div class="welcome">Welcome back, <span id="adminFirstName">Admin!</span></div>

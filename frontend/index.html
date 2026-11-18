@@ -1,96 +1,139 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect - Home</title>
+
+  <title>PawTect | Sign In</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+
+  <link rel="icon" href="data:," />
 </head>
-<body>
 
-  <header class="navbar">
-    <div class="nav-left">
-      <div class="logo-circle"></div>
-      <span class="logo-text">PawTect</span>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-btn active"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <!-- -->
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
-    </nav>
-    <div class="nav-right">
-      <a href="profile.html" class="user-select" style="text-decoration:none; color:#fff;"><span>Rene Buttercoconut</span><i class="fa-solid fa-chevron-down"></i></a>
-      <div class="profile-circle" onclick="window.location.href='profile.html'" style="cursor:pointer;"></div>
-    </div>
-  </header>
+<body class="auth-page">
 
-  <div class="main-layout">
-    <main class="content-area">
-      <div class="hero-banner">
-        <div class="hero-badge"><i class="fa-solid fa-shield-cat"></i></div>
-        <div class="hero-text">
-          <h2>Hello, welcome to PawTect!</h2>
-          <p>Together, we can make a difference. Report stray animals, help pets in need, and support rescue efforts in our community.</p>
-          <div class="hero-actions">
-            <a href="submit-report.html" class="btn btn-coral"><i class="fa-solid fa-bullhorn"></i> Report a stray <i class="fa-solid fa-chevron-right"></i></a>
-            <a href="rescue-cases.html" class="btn btn-peach"><i class="fa-solid fa-paw"></i> Rescue a stray <i class="fa-solid fa-chevron-right"></i></a>
-          </div>
-        </div>
+  <main class="auth-container">
+
+    <!-- PawTect Logo -->
+    <div class="auth-logo">
+  <img src="assets/logo-removebg-preview.png" alt="PawTect Logo">
+</div>
+
+    <!-- Login Card -->
+    <section class="auth-card">
+
+      <div class="auth-heading">
+        <h1>Welcome back</h1>
+        <p>Sign in to your Pawtect account</p>
       </div>
 
-      <div class="section-header">
-        <h3><i class="fa-solid fa-paw"></i> Your Active Cases</h3>
-        <a href="rescue-cases.html" class="view-all-link">View All Cases <i class="fa-solid fa-arrow-right"></i></a>
+      <!-- Google Sign In -->
+      <button type="button" class="google-btn">
+        <i class="fa-brands fa-google"></i>
+        <span>Continue with Google</span>
+      </button>
+
+      <!-- Divider -->
+      <div class="auth-divider">
+        <span></span>
+        <p>or</p>
+        <span></span>
       </div>
 
-      <div class="cards-grid">
-        <div class="case-card" onclick="window.location.href='case-details.html'" style="cursor:pointer;">
-          <div class="card-thumb"><i class="fa-solid fa-dog"></i></div>
-          <div class="card-body">
-            <div class="card-title-row">
-              <h4>Case #6969</h4>
-              <span class="tag tag-assigned">Rescue Assigned</span>
-            </div>
-            <ul class="meta-list">
-              <li><i class="fa-solid fa-scroll"></i> Brown dog near market</li>
-              <li><i class="fa-solid fa-location-dot"></i> Holycross Market, San Bartolome</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026 • 10:29 AM</li>
-            </ul>
-            <div class="status-banner status-coral"><i class="fa-solid fa-paw"></i> A Rescue volunteer has accepted the mission.</div>
-          </div>
+      <!-- Login Form -->
+      <form onsubmit="handleLogin(event)">
+
+        <div class="form-group">
+          <label for="email">EMAIL</label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+            autocomplete="email"
+          />
         </div>
 
-        <div class="case-card" onclick="window.location.href='case-details.html'" style="cursor:pointer;">
-          <div class="card-thumb"><i class="fa-solid fa-cat"></i></div>
-          <div class="card-body">
-            <div class="card-title-row">
-              <h4>Case #6767</h4>
-              <span class="tag tag-reported">Reported</span>
-            </div>
-            <ul class="meta-list">
-              <li><i class="fa-solid fa-scroll"></i> Domestic Cat Oreo</li>
-              <li><i class="fa-solid fa-location-dot"></i> Brgy. Sta Lucia</li>
-              <li><i class="fa-solid fa-calendar-days"></i> Oct. 27, 2026 • 10:29 AM</li>
-            </ul>
-            <div class="status-banner status-peach"><i class="fa-solid fa-paw"></i> Case is pending for approval.</div>
+        <div class="form-group">
+          <label for="password">PASSWORD</label>
+
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              required
+              autocomplete="current-password"
+            />
+
+            <button
+              type="button"
+              class="password-toggle"
+              id="togglePassword"
+              aria-label="Show password"
+            >
+              <i class="fa-solid fa-eye"></i>
+            </button>
           </div>
         </div>
+
+        <button type="submit" class="btn btn-login">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Sign In
+        </button>
+
+      </form>
+
+      <!-- Register Link -->
+      <div class="signup-link">
+        Don't have an account?
+        <a href="register.html">Sign Up</a>
       </div>
 
-    </main>
+    </section>
 
-    <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
-      <div class="sidebar-callout">
-        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
-        <p>Check the map first to prevent duplicate entries for the same stray animal.</p>
-        <a href="map.html" class="btn btn-brown btn-block">Check the Map <i class="fa-solid fa-chevron-right"></i></a>
-      </div>
-      <div class="sidebar-card sidebar-map-card" onclick="window.location.href='map.html'" style="cursor:pointer;">
-        <div class="mini-map-header"><span>Nearby Shelters</span></div>
-        <div class
+    <p id="authMessage" class="auth-message" aria-live="polite"></p>
+
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+
+if (togglePassword && passwordInput) {
+
+    togglePassword.addEventListener("click", function () {
+
+        const isPassword = passwordInput.type === "password";
+
+        passwordInput.type = isPassword ? "text" : "password";
+
+        this.innerHTML = isPassword
+            ? '<i class="fa-solid fa-eye-slash"></i>'
+            : '<i class="fa-solid fa-eye"></i>';
+
+        this.setAttribute(
+            "aria-label",
+            isPassword ? "Hide password" : "Show password"
+        );
+
+    });
+
+}
+</script>
+  
+
+
+</body>
+</html>

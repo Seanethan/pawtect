@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawTect - Rescue Cases List</title>
+  <title>PawTect - Rescue Cases</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <header class="navbar">
@@ -15,38 +17,93 @@
       <div class="logo-circle"></div>
       <span class="logo-text">PawTect</span>
     </div>
+
     <nav class="nav-links">
-      <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="map.html" class="nav-btn"><i class="fa-solid fa-map-location-dot"></i> Map</a>
-      <a href="rescue-cases.html" class="nav-btn active"><i class="fa-solid fa-list-check"></i> Rescue Cases</a>
-      <a href="submit-report.html" class="nav-btn"><i class="fa-solid fa-bullhorn"></i> Report</a>
-      <a href="profile.html" class="nav-btn"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="landing-page.html" class="nav-btn">
+    <i class="fa-solid fa-house"></i> Home
+</a>
+      <a href="map.html" class="nav-btn">
+        <i class="fa-solid fa-map-location-dot"></i> Map
+      </a>
+      <a href="rescue-cases.html" class="nav-btn active">
+        <i class="fa-solid fa-list-check"></i> Rescue Cases
+      </a>
+      <a href="submit-report.html" class="nav-btn">
+        <i class="fa-solid fa-bullhorn"></i> Report
+      </a>
+      <a href="profile.html" class="nav-btn">
+        <i class="fa-solid fa-user"></i> Profile
+      </a>
     </nav>
+
     <div class="nav-right">
-      <div class="user-select"><span>Rene Buttercoconut</span> <i class="fa-solid fa-chevron-down"></i></div>
-      <div class="profile-circle"></div>
+  <div class="user-dropdown-container">
+    <button
+      type="button"
+      class="user-select"
+      id="userDropdownToggle"
+      aria-expanded="false"
+      aria-controls="userDropdown"
+    >
+      <span id="navUserName">My Account</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="user-dropdown" id="userDropdown">
+      <a href="profile.html">
+        <i class="fa-solid fa-user"></i> My Profile
+      </a>
+
+      <button type="button" id="userLogout">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
     </div>
+  </div>
+
+  <div
+    class="profile-circle"
+    onclick="window.location.href='profile.html'"
+    style="cursor:pointer;"
+  ></div>
+</div>
   </header>
 
   <div class="main-layout">
-    <main class="content-area">
+
+    <main class="content-area rescue-cases-page">
+
       <div class="page-title-bar">
         <div class="title-with-icon">
           <i class="fa-solid fa-paw header-paw"></i>
-          <h2>Rescue Cases</h2>
+          <div>
+            <h2>Rescue Cases</h2>
+            <p class="page-subtitle">Browse and track reported stray animals.</p>
+          </div>
         </div>
+
+        <a href="submit-report.html" class="btn btn-coral new-report-btn">
+          <i class="fa-solid fa-plus"></i> Submit a Report
+        </a>
       </div>
 
       <div class="list-container-card">
-        <!-- TOP TOOLBAR -->
+
+        <!-- SEARCH AND SORT -->
         <div class="filter-toolbar">
+
           <div class="search-input-wrapper">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="caseSearchInput" placeholder="Search by animal, location, or description..." onkeyup="filterRescueCases()" />
+            <input
+              type="search"
+              id="caseSearchInput"
+              placeholder="Search animal, location, description, or report ID..."
+              oninput="filterRescueCases()"
+            />
           </div>
 
           <div class="sort-wrapper">
-            <label>Sort by:</label>
+            <label for="sortBySelect">Sort by:</label>
+
             <div class="select-box">
               <select id="sortBySelect" onchange="filterRescueCases()">
                 <option value="newest">Newest</option>
@@ -56,93 +113,130 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </div>
+
         </div>
 
-        <!-- CATEGORY PILLS -->
+        <!-- CATEGORY FILTERS -->
         <div class="pill-bar">
-          <button class="pill-btn active" onclick="filterCategory('all', this)">All Cases</button>
-          <button class="pill-btn" onclick="filterCategory('urgent', this)"><i class="fa-regular fa-clock"></i> Urgent</button>
-          <button class="pill-btn" onclick="filterCategory('progress', this)"><i class="fa-regular fa-compass"></i> In progress</button>
-          <button class="pill-btn" onclick="filterCategory('cat', this)"><i class="fa-solid fa-cat"></i> Cat</button>
-          <button class="pill-btn" onclick="filterCategory('dog', this)"><i class="fa-solid fa-dog"></i> Dog</button>
+          <button
+            type="button"
+            class="pill-btn active"
+            data-category="all"
+            onclick="filterCategory('all', this)"
+          >
+            All Cases
+          </button>
+
+          <button
+            type="button"
+            class="pill-btn"
+            data-category="urgent"
+            onclick="filterCategory('urgent', this)"
+          >
+            <i class="fa-regular fa-clock"></i> Urgent
+          </button>
+
+          <button
+            type="button"
+            class="pill-btn"
+            data-category="progress"
+            onclick="filterCategory('progress', this)"
+          >
+            <i class="fa-regular fa-compass"></i> In Progress
+          </button>
+
+          <button
+            type="button"
+            class="pill-btn"
+            data-category="cat"
+            onclick="filterCategory('cat', this)"
+          >
+            <i class="fa-solid fa-cat"></i> Cats
+          </button>
+
+          <button
+            type="button"
+            class="pill-btn"
+            data-category="dog"
+            onclick="filterCategory('dog', this)"
+          >
+            <i class="fa-solid fa-dog"></i> Dogs
+          </button>
         </div>
 
-        <!-- CASES LIST -->
+        <!-- RESULTS SUMMARY -->
+        <div class="cases-results-header">
+          <span id="casesResultCount">Loading cases...</span>
+          <button type="button" class="cases-refresh-btn" onclick="loadRescueCases()">
+            <i class="fa-solid fa-rotate"></i> Refresh
+          </button>
+        </div>
+
+        <!-- DYNAMIC CASES -->
         <div class="cases-vertical-list" id="casesList">
-          
-          <!-- Item 1 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
-              </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
+  <div class="cases-loading">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading rescue cases...</p>
+  </div>
+</div>
 
-          <!-- Item 2 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
-              </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="case-list-item" data-category="dog urgent">
-            <div class="item-thumb"><i class="fa-solid fa-dog"></i></div>
-            <div class="item-details">
-              <span class="item-code">RP-001</span>
-              <div class="item-field"><i class="fa-solid fa-paw"></i> <span>Dog</span> <span class="sub-label">Injured</span></div>
-              <div class="item-field"><i class="fa-solid fa-location-dot"></i> <span>Quezon City</span> <span class="sub-label">San Bartolome</span></div>
-              <div class="item-field"><i class="fa-solid fa-calendar-days"></i> <span>Oct. 24</span> <span class="sub-label">10:23 AM</span></div>
-            </div>
-            <div class="item-right-actions">
-              <div class="tag-row">
-                <span class="badge badge-amber">Dog</span>
-                <span class="badge badge-rose">Urgent</span>
-              </div>
-              <a href="case-overview.html" class="btn btn-coral">View Details <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <i class="fa-solid fa-bars list-drag-icon"></i>
-          </div>
-
-        </div>
       </div>
     </main>
 
     <aside class="sidebar">
-      <div class="sidebar-card"><div class="sidebar-header"><span>Notification</span><i class="fa-solid fa-bell bell-icon"></i></div></div>
+
+      <!-- NOTIFICATIONS -->
+      <div class="sidebar-card">
+  <div class="sidebar-header">
+    <span>
+      Notifications
+      <span id="notificationCount" class="notification-count hidden">0</span>
+    </span>
+    <i class="fa-solid fa-bell bell-icon"></i>
+  </div>
+
+  <div id="notificationList" class="notification-list">
+    <div class="notification-empty">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <p>Loading notifications...</p>
+    </div>
+  </div>
+</div>
+      <!-- REPORT REMINDER -->
       <div class="sidebar-callout">
-        <div class="callout-header"><span>Before you report</span><i class="fa-solid fa-bullhorn megaphone-icon"></i></div>
-        <p>Check the <u>map</u> first. If the stray is already pinned, you can follow that case instead of sending a duplicate report.</p>
-        <button class="btn btn-brown btn-block">Check the Map <i class="fa-solid fa-chevron-right"></i></button>
+        <div class="callout-header">
+          <span>Before you report</span>
+          <i class="fa-solid fa-bullhorn megaphone-icon"></i>
+        </div>
+
+        <p>
+          Check the map first. If the stray animal is already pinned,
+          you can follow that report instead of submitting a duplicate.
+        </p>
+
+        <a href="map.html" class="btn btn-brown btn-block">
+  Check the Map <i class="fa-solid fa-chevron-right"></i>
+</a>
       </div>
+
+      <!-- MAP SHORTCUT -->
       <div class="sidebar-card sidebar-map-card">
-        <div class="mini-map-header"><span>Nearby Clinic/Shelters</span></div>
-        <div class="mini-map-box"><i class="fa-solid fa-map-location-dot mini-map-icon"></i></div>
-        <div class="mini-map-footer"><a href="#">View Map <i class="fa-solid fa-arrow-right"></i></a></div>
+        <div class="mini-map-header">
+          <span>Nearby Clinics / Shelters</span>
+        </div>
+
+        <a href="map.html" class="mini-map-box">
+          <i class="fa-solid fa-map-location-dot mini-map-icon"></i>
+          <span>Explore nearby facilities</span>
+        </a>
+
+        <div class="mini-map-footer">
+          <a href="map.html">
+  View Map <i class="fa-solid fa-arrow-right"></i>
+</a>
+        </div>
       </div>
+
     </aside>
   </div>
 
